@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hawker Talk: word and sentence practice</title>
+<meta name="description" content="Aphasia naming and sentence practice with photos of Singapore hawker food. English and Mandarin. Progress stays on this device.">
+<style>
+:root{
+  --bg:#f6f3ee; --card:#ffffff; --ink:#1f2328; --muted:#535b63; --line:#d9d3c9;
+  --pri:#0b5d66; --pri-ink:#ffffff; --pri-soft:#e1efef;
+  --ok:#1d6b3a; --ok-soft:#e3f1e7; --warn:#8a4b00; --warn-soft:#fbeedd;
+  --focus:#c25e00; --r:16px;
+  --fs:clamp(18px,2.2vw,22px);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;font-size:var(--fs);line-height:1.45}
+body{min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+h1,h2,h3{line-height:1.2;margin:.2em 0 .5em}
+h1{font-size:1.7em} h2{font-size:1.35em} h3{font-size:1.1em}
+a{color:var(--pri)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.top{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header.top .brand{font-weight:700;font-size:1.05em;margin-right:auto;background:none;border:0;padding:8px 4px;cursor:pointer;min-height:48px}
+.langsw{display:flex;border:2px solid var(--pri);border-radius:999px;overflow:hidden}
+.langsw button{border:0;background:transparent;padding:8px 16px;min-height:48px;min-width:64px;cursor:pointer;font-weight:600;color:var(--pri)}
+.langsw button[aria-pressed="true"]{background:var(--pri);color:var(--pri-ink)}
+main{max-width:1100px;margin:0 auto;padding:16px 16px 48px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:12px 22px;border-radius:14px;border:2px solid var(--pri);background:var(--card);color:var(--pri);font-weight:650;cursor:pointer;text-align:center;text-decoration:none;font-size:1em}
+.btn.pri{background:var(--pri);color:var(--pri-ink)}
+.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.btn.ghost{border-color:var(--line);color:var(--ink)}
+.btn.small{min-height:48px;padding:8px 14px;font-size:.9em}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn svg{width:1.3em;height:1.3em;flex:none}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.stack>*+*{margin-top:12px}
+.muted{color:var(--muted)}
+.stat{font-size:2.2em;font-weight:750;line-height:1}
+.statlbl{color:var(--muted);font-size:.85em;margin-top:4px}
+.level{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;min-height:120px;padding:18px;border-radius:var(--r);border:2px solid var(--line);background:var(--card);cursor:pointer;width:100%}
+.level:hover{border-color:var(--pri)}
+.level .n{font-size:.8em;font-weight:700;color:var(--pri);text-transform:uppercase;letter-spacing:.04em}
+.level .t{font-size:1.15em;font-weight:700}
+.level .d{color:var(--muted);font-size:.85em}
+.level .pb{font-size:.85em;margin-top:auto}
+.level.rec{border-color:var(--pri);background:var(--pri-soft)}
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--pri);color:#fff;font-size:.75em;font-weight:700}
+/* practice screen */
+.practice{display:grid;gap:18px;grid-template-columns:1fr}
+@media (min-width:900px) and (orientation:landscape){.practice{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start}}
+.progressbar{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.progressbar>span{display:block;height:100%;background:var(--pri)}
+.photo{position:relative;background:#e9e4dc;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo .ph{padding:24px;text-align:center;color:var(--muted)}
+.credit{font-size:.7em;color:var(--muted);margin-top:6px}
+.prompt{font-size:1.6em;font-weight:750;margin:0}
+.cue{border-left:6px solid var(--pri);background:var(--pri-soft);padding:12px 16px;border-radius:10px;font-size:1.1em}
+.cue .lbl{display:block;font-size:.7em;font-weight:700;color:var(--pri);text-transform:uppercase;letter-spacing:.04em}
+.answer{font-size:2em;font-weight:800;letter-spacing:.01em}
+.answer .py{display:block;font-size:.5em;font-weight:500;color:var(--muted)}
+.other{font-size:.8em;color:var(--muted)}
+.sentence{font-size:1.45em;font-weight:650}
+.blank{display:inline-block;min-width:4em;border-bottom:4px solid var(--ink);margin:0 .2em}
+.actions{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+@media (max-width:480px){.actions{grid-template-columns:1fr}}
+.actions .btn{min-height:76px;font-size:1.05em}
+.stall{background:#fff8ea;border:2px solid #e8c88f;border-radius:var(--r);padding:14px 18px}
+.stall .who{font-size:.75em;font-weight:700;color:var(--warn);text-transform:uppercase;letter-spacing:.04em}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{min-height:56px;padding:10px 16px;border-radius:12px;border:2px solid var(--line);background:#fff;font-weight:600;cursor:pointer}
+.tiles{display:flex;flex-wrap:wrap;gap:12px;min-height:76px}
+.tile{min-height:68px;min-width:68px;padding:10px 18px;border-radius:12px;border:2px solid var(--pri);background:#fff;color:var(--ink);font-size:1.25em;font-weight:700;cursor:pointer}
+.tile.hint{box-shadow:0 0 0 5px var(--focus)}
+.tile.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media (prefers-reduced-motion:reduce){.tile.shake{animation:none;background:var(--warn-soft)}}
+.built{display:flex;flex-wrap:wrap;gap:10px;min-height:76px;padding:10px;border:2px dashed var(--line);border-radius:12px;align-items:center}
+.built span{padding:10px 16px;border-radius:10px;background:var(--ok-soft);font-size:1.25em;font-weight:700}
+.feat{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+.feat .chip[aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok)}
+.featrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.featrow .q{font-weight:650}
+.featrow .a{color:var(--pri);font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:.85em}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#efeae2}
+.tablewrap{overflow-x:auto}
+label{font-weight:600}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field input[type=text],.field select,.field textarea{min-height:52px;padding:10px 12px;border:2px solid var(--line);border-radius:10px;background:#fff}
+.check{display:flex;gap:12px;align-items:center;min-height:48px}
+.check input{width:28px;height:28px}
+.itemgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.item{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.item .thumb{aspect-ratio:4/3;background:#e9e4dc;display:flex;align-items:center;justify-content:center;font-size:.8em;color:var(--muted)}
+.item .thumb img{width:100%;height:100%;object-fit:cover}
+.item .body{padding:10px}
+.btn.recording{background:#b3261e;border-color:#b3261e;color:#fff}
+.vrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.vrow .lbl{font-size:.75em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.vrow .txt{font-weight:650}
+.vrow .ok{color:var(--ok);font-weight:700;font-size:.85em}
+@media (max-width:640px){.vrow{grid-template-columns:1fr}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:14px 22px;border-radius:12px;z-index:50;max-width:90vw;font-size:.9em}
+.note{background:var(--warn-soft);border-radius:12px;padding:12px 16px;font-size:.9em}
+.result-big{font-size:3em;font-weight:800;color:var(--pri)}
+footer{max-width:1100px;margin:0 auto;padding:0 16px 32px;font-size:.75em;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="top">
+  <button class="brand" data-act="home" id="brand">Hawker Talk</button>
+  <div class="langsw" role="group" aria-label="Language / 语言">
+    <button data-act="lang" data-lang="en" aria-pressed="true">English</button>
+    <button data-act="lang" data-lang="zh" aria-pressed="false" lang="zh-Hans">中文</button>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer id="foot"></footer>
+<div id="live" class="sr" aria-live="polite"></div>
+
+<script>
+"use strict";
+/* =====================================================================
+   HAWKER TALK
+   One-file aphasia practice app. All data stays in this browser.
+
+   TO SWAP A PHOTO: easiest is Settings > Photos > "Use my photo" in the
+   app (stored on this device only). To change the default for everyone,
+   put a file next to index.html (e.g. photos/laksa.jpg) and set
+   photo: "photos/laksa.jpg" on that dish below, with your own credit.
+   ===================================================================== */
+
+
+/* Dish bank. Text fields marked "|" are split into word tiles in Level 3.
+   kind/inside/taste/when feed Level 4 (Describe).                         */
+const DISHES = [
+ {id:"chicken_rice", en:"chicken rice", zh:"海南鸡饭", py:"hǎinán jīfàn", onEn:"chick…", onZh:"海", onZhPy:"hǎi",
+  clueEn:"Rice cooked in chicken stock, with chicken, chilli and ginger.", clueZh:"用鸡汤煮的饭，配鸡肉、辣椒和姜蓉。",
+  kindEn:"a rice dish", kindZh:"饭", insideEn:"chicken, rice, chilli and cucumber", insideZh:"鸡肉、饭、辣椒和黄瓜",
+  tasteEn:"fragrant", tasteZh:"很|香", whenEn:"for lunch", whenZh:"午餐",
+  clozeEn:"Steamed chicken on fragrant rice, with chilli and ginger, is called ___.", clozeZh:"白斩鸡配香饭，还有辣椒和姜蓉，叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:5.0},
+ {id:"laksa", en:"laksa", zh:"叻沙", py:"lèshā", onEn:"lak…", onZh:"叻", onZhPy:"lè",
+  clueEn:"Noodles in a spicy coconut curry soup, with prawns and cockles.", clueZh:"椰浆咖喱汤面，有虾和血蚶，很辣。",
+  kindEn:"a noodle soup", kindZh:"汤面", insideEn:"thick bee hoon, prawns, fishcake and coconut curry soup", insideZh:"粗米粉、虾、鱼饼和椰浆咖喱汤",
+  tasteEn:"spicy", tasteZh:"很|辣", whenEn:"for lunch", whenZh:"午餐",
+  clozeEn:"Noodles in a spicy coconut curry soup are called ___.", clozeZh:"又辣又香的椰浆咖喱汤面叫做___。",
+  unitEn:"a bowl of", mZh:"碗", drink:false, price:6.0},
+ {id:"char_kway_teow", en:"char kway teow", zh:"炒粿条", py:"chǎo guǒtiáo", onEn:"char…", onZh:"炒", onZhPy:"chǎo",
+  clueEn:"Flat rice noodles fried in dark soy sauce, with cockles and Chinese sausage.", clueZh:"用黑酱油炒的扁米条，有血蚶和腊肠。",
+  kindEn:"a fried noodle dish", kindZh:"炒面类", insideEn:"flat rice noodles, egg, cockles and Chinese sausage", insideZh:"粿条、鸡蛋、血蚶和腊肠",
+  tasteEn:"smoky|and|sweet", tasteZh:"又香|又甜", whenEn:"for dinner", whenZh:"晚餐",
+  clozeEn:"Flat rice noodles fried in a hot wok with dark sauce and cockles are ___.", clozeZh:"用大火和黑酱油炒的扁米条叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:5.0},
+ {id:"satay", en:"satay", zh:"沙爹", py:"shādiē", onEn:"sa…", onZh:"沙", onZhPy:"shā",
+  clueEn:"Meat on sticks, grilled over charcoal, with peanut sauce.", clueZh:"串在竹签上、用炭火烤的肉，蘸花生酱吃。",
+  kindEn:"grilled meat on sticks", kindZh:"烤肉串", insideEn:"chicken or mutton, peanut sauce, onion and cucumber", insideZh:"鸡肉或羊肉、花生酱、洋葱和黄瓜",
+  tasteEn:"sweet|and|smoky", tasteZh:"又甜|又香", whenEn:"for supper", whenZh:"宵夜",
+  clozeEn:"Meat on sticks, grilled over charcoal and dipped in peanut sauce, is ___.", clozeZh:"串在竹签上、蘸花生酱吃的烤肉叫做___。",
+  unitEn:"ten sticks of", mZh:"份", drink:false, price:8.0},
+ {id:"roti_prata", en:"roti prata", zh:"印度煎饼", py:"yìndù jiānbǐng", onEn:"ro…", onZh:"印", onZhPy:"yìn",
+  clueEn:"Crispy, flaky flatbread that you dip in curry.", clueZh:"又脆又软的煎饼，蘸咖喱吃。",
+  kindEn:"a flatbread", kindZh:"煎饼", insideEn:"flour, ghee and a bowl of curry", insideZh:"面粉、酥油和一碗咖喱",
+  tasteEn:"crispy", tasteZh:"很|脆", whenEn:"for breakfast", whenZh:"早餐",
+  clozeEn:"Crispy flatbread that you dip in fish curry is ___.", clozeZh:"蘸鱼咖喱吃的脆煎饼叫做___。",
+  unitEn:"two pieces of", mZh:"份", drink:false, price:3.0},
+ {id:"nasi_lemak", en:"nasi lemak", zh:"椰浆饭", py:"yējiāng fàn", onEn:"na…", onZh:"椰", onZhPy:"yē",
+  clueEn:"Coconut rice with ikan bilis, peanuts, egg and sambal.", clueZh:"椰浆煮的饭，配江鱼仔、花生、鸡蛋和叁峇辣椒。",
+  kindEn:"a rice dish", kindZh:"饭", insideEn:"coconut rice, ikan bilis, peanuts, egg and sambal", insideZh:"椰浆饭、江鱼仔、花生、鸡蛋和叁峇",
+  tasteEn:"rich|and|spicy", tasteZh:"又香|又辣", whenEn:"for breakfast", whenZh:"早餐",
+  clozeEn:"Coconut rice with ikan bilis, peanuts and sambal is ___.", clozeZh:"配江鱼仔、花生和叁峇的椰浆米饭叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:4.5},
+ {id:"bak_kut_teh", en:"bak kut teh", zh:"肉骨茶", py:"ròugǔchá", onEn:"bak…", onZh:"肉", onZhPy:"ròu",
+  clueEn:"Pork ribs in a hot, peppery soup with garlic.", clueZh:"排骨炖的汤，胡椒味很浓，有大蒜。",
+  kindEn:"a soup", kindZh:"汤", insideEn:"pork ribs, garlic, pepper and soup", insideZh:"排骨、大蒜、胡椒和汤",
+  tasteEn:"peppery", tasteZh:"胡椒味|很浓", whenEn:"for breakfast", whenZh:"早餐",
+  clozeEn:"Pork ribs cooked in a peppery garlic soup are called ___.", clozeZh:"用胡椒和大蒜炖的排骨汤叫做___。",
+  unitEn:"a bowl of", mZh:"碗", drink:false, price:8.0},
+ {id:"hokkien_mee", en:"Hokkien mee", zh:"福建虾面", py:"fújiàn xiāmiàn", onEn:"hok…", onZh:"福", onZhPy:"fú",
+  clueEn:"Yellow noodles and bee hoon fried in prawn stock, with lime and sambal.", clueZh:"黄面和米粉用虾汤炒，配酸柑和叁峇。",
+  kindEn:"a fried noodle dish", kindZh:"炒面类", insideEn:"yellow noodles, bee hoon, prawns, squid and egg", insideZh:"黄面、米粉、虾、苏东和鸡蛋",
+  tasteEn:"savoury", tasteZh:"很|鲜", whenEn:"for dinner", whenZh:"晚餐",
+  clozeEn:"Noodles fried in prawn stock, served with sambal and a small lime, are ___.", clozeZh:"用虾汤炒、配叁峇和酸柑的面叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:6.0},
+ {id:"chilli_crab", en:"chilli crab", zh:"辣椒螃蟹", py:"làjiāo pángxiè", onEn:"chil…", onZh:"辣", onZhPy:"là",
+  clueEn:"Crab in a thick, sweet and spicy tomato sauce, eaten with buns.", clueZh:"螃蟹煮在又甜又辣的番茄酱汁里，配炸馒头吃。",
+  kindEn:"a seafood dish", kindZh:"海鲜", insideEn:"crab, chilli, tomato sauce and egg", insideZh:"螃蟹、辣椒、番茄酱和鸡蛋",
+  tasteEn:"sweet|and|spicy", tasteZh:"又甜|又辣", whenEn:"for dinner", whenZh:"晚餐",
+  clozeEn:"Singapore's famous crab in sweet and spicy sauce is ___.", clozeZh:"新加坡有名的、用甜辣酱煮的螃蟹叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:60},
+ {id:"kaya_toast", en:"kaya toast", zh:"咖椰吐司", py:"kāyē tǔsī", onEn:"ka…", onZh:"咖", onZhPy:"kā",
+  clueEn:"Crispy bread with coconut jam and butter, eaten with soft-boiled eggs.", clueZh:"烤面包涂咖椰和牛油，配半生熟蛋吃。",
+  kindEn:"a breakfast set", kindZh:"早餐", insideEn:"toast, kaya, butter and soft-boiled eggs", insideZh:"面包、咖椰、牛油和半生熟蛋",
+  tasteEn:"sweet", tasteZh:"很|甜", whenEn:"for breakfast", whenZh:"早餐",
+  clozeEn:"With my morning kopi I like soft-boiled eggs and ___.", clozeZh:"早上喝咖啡，我喜欢吃半生熟蛋和___。",
+  unitEn:"a set of", mZh:"份", drink:false, price:4.0},
+ {id:"carrot_cake", en:"carrot cake", zh:"菜头粿", py:"càitóu guǒ", onEn:"car…", onZh:"菜", onZhPy:"cài",
+  clueEn:"Radish cake fried with egg and preserved radish. It comes black or white.", clueZh:"萝卜糕和鸡蛋、菜脯一起炒，有黑的也有白的。",
+  kindEn:"a fried dish", kindZh:"炒的小吃", insideEn:"radish cake, egg, preserved radish and spring onion", insideZh:"萝卜糕、鸡蛋、菜脯和青葱",
+  tasteEn:"savoury", tasteZh:"很|香", whenEn:"for breakfast", whenZh:"早餐",
+  clozeEn:"Fried radish cake with egg, black or white, is called ___.", clozeZh:"用鸡蛋炒的萝卜糕，有黑有白，叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:4.0},
+ {id:"wanton_mee", en:"wanton mee", zh:"云吞面", py:"yúntūn miàn", onEn:"wan…", onZh:"云", onZhPy:"yún",
+  clueEn:"Thin egg noodles with char siew and small dumplings.", clueZh:"细蛋面配叉烧和小云吞。",
+  kindEn:"a noodle dish", kindZh:"面", insideEn:"egg noodles, char siew, dumplings and vegetables", insideZh:"蛋面、叉烧、云吞和青菜",
+  tasteEn:"savoury", tasteZh:"很|香", whenEn:"for lunch", whenZh:"午餐",
+  clozeEn:"Thin egg noodles with char siew and dumplings are ___.", clozeZh:"细蛋面配叉烧和小云吞，叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:5.0},
+ {id:"fishball_noodles", en:"fishball noodles", zh:"鱼圆面", py:"yúyuán miàn", onEn:"fish…", onZh:"鱼", onZhPy:"yú",
+  clueEn:"Noodles served with round, bouncy balls made of fish.", clueZh:"面配用鱼肉做的、圆圆弹弹的丸子。",
+  kindEn:"a noodle dish", kindZh:"面", insideEn:"noodles, fishballs, fishcake and vegetables", insideZh:"面、鱼圆、鱼饼和青菜",
+  tasteEn:"light", tasteZh:"很|清淡", whenEn:"for lunch", whenZh:"午餐",
+  clozeEn:"Noodles with bouncy balls made of fish are called ___.", clozeZh:"配上弹弹的鱼丸的面叫做___。",
+  unitEn:"a bowl of", mZh:"碗", drink:false, price:4.5},
+ {id:"popiah", en:"popiah", zh:"薄饼", py:"báobǐng", onEn:"po…", onZh:"薄", onZhPy:"báo",
+  clueEn:"A soft, thin skin rolled around turnip, egg and vegetables.", clueZh:"薄薄的饼皮包着沙葛、鸡蛋和青菜。",
+  kindEn:"a fresh spring roll", kindZh:"小吃", insideEn:"turnip, egg, peanuts and a thin skin", insideZh:"沙葛、鸡蛋、花生和薄饼皮",
+  tasteEn:"sweet|and|fresh", tasteZh:"又甜|又清爽", whenEn:"as a snack", whenZh:"下午",
+  clozeEn:"A soft, thin skin rolled around turnip and vegetables is ___.", clozeZh:"用薄饼皮卷着沙葛和青菜的小吃叫做___。",
+  unitEn:"one roll of", mZh:"条", drink:false, price:2.5},
+ {id:"rojak", en:"rojak", zh:"罗惹", py:"luórě", onEn:"ro…", onZh:"罗", onZhPy:"luó",
+  clueEn:"Fruit, vegetables and you tiao mixed in a black prawn paste sauce.", clueZh:"水果、青菜和油条，拌黑色的虾膏酱。",
+  kindEn:"a salad", kindZh:"沙拉", insideEn:"pineapple, cucumber, you tiao, peanuts and prawn paste", insideZh:"黄梨、黄瓜、油条、花生和虾膏",
+  tasteEn:"sweet|and|sour", tasteZh:"又甜|又酸", whenEn:"as a snack", whenZh:"下午",
+  clozeEn:"Fruit and vegetables mixed in black prawn paste with peanuts is ___.", clozeZh:"水果和青菜拌虾膏和花生，叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:4.0},
+ {id:"chendol", en:"chendol", zh:"煎蕊", py:"jiānruǐ", onEn:"chen…", onZh:"煎", onZhPy:"jiān",
+  clueEn:"A cold dessert with green jelly, coconut milk and palm sugar.", clueZh:"冰冷的甜品，有绿色的粉条、椰浆和椰糖。",
+  kindEn:"a cold dessert", kindZh:"甜品", insideEn:"shaved ice, green jelly, coconut milk and gula melaka", insideZh:"刨冰、绿色粉条、椰浆和椰糖",
+  tasteEn:"sweet|and|cold", tasteZh:"又甜|又冰", whenEn:"on a hot day", whenZh:"天气热的时候",
+  clozeEn:"A cold dessert with green jelly, coconut milk and gula melaka is ___.", clozeZh:"有绿色粉条、椰浆和椰糖的冰甜品叫做___。",
+  unitEn:"a bowl of", mZh:"碗", drink:false, price:3.0},
+ {id:"ice_kacang", en:"ice kacang", zh:"红豆冰", py:"hóngdòu bīng", onEn:"ice…", onZh:"红", onZhPy:"hóng",
+  clueEn:"A mountain of shaved ice with red beans, jelly and colourful syrup.", clueZh:"一座小山似的刨冰，有红豆、果冻和彩色糖浆。",
+  kindEn:"a cold dessert", kindZh:"甜品", insideEn:"shaved ice, red beans, sweetcorn, jelly and syrup", insideZh:"刨冰、红豆、玉米粒、果冻和糖浆",
+  tasteEn:"sweet|and|cold", tasteZh:"又甜|又冰", whenEn:"on a hot day", whenZh:"天气热的时候",
+  clozeEn:"A tall mountain of shaved ice with red beans and syrup is ___.", clozeZh:"堆得高高的刨冰，有红豆和糖浆，叫做___。",
+  unitEn:"a bowl of", mZh:"碗", drink:false, price:3.0},
+ {id:"mee_siam", en:"mee siam", zh:"暹罗米", py:"xiānluó mǐ", onEn:"mee…", onZh:"暹", onZhPy:"xiān",
+  clueEn:"Thin rice noodles in a sweet, sour and spicy gravy, with egg and lime.", clueZh:"细米粉配酸甜辣的汤汁，有鸡蛋和酸柑。",
+  kindEn:"a noodle dish", kindZh:"米粉", insideEn:"bee hoon, gravy, egg, tau pok and lime", insideZh:"米粉、汤汁、鸡蛋、豆卜和酸柑",
+  tasteEn:"sweet|and|sour", tasteZh:"又酸|又甜", whenEn:"for breakfast", whenZh:"早餐",
+  clozeEn:"Thin rice noodles in a sweet and sour gravy are called ___.", clozeZh:"细米粉配酸甜的汤汁，叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:4.0},
+ {id:"oyster_omelette", en:"oyster omelette", zh:"蚝煎", py:"háojiān", onEn:"oy…", onZh:"蚝", onZhPy:"háo",
+  clueEn:"Egg fried with small oysters and starch until crispy.", clueZh:"鸡蛋和小蚝、薯粉一起煎，煎得香脆。",
+  kindEn:"a fried egg dish", kindZh:"煎的小吃", insideEn:"egg, small oysters, starch and chilli sauce", insideZh:"鸡蛋、小蚝、薯粉和辣椒酱",
+  tasteEn:"crispy", tasteZh:"很|香脆", whenEn:"for supper", whenZh:"宵夜",
+  clozeEn:"Egg fried with small oysters is called an ___.", clozeZh:"鸡蛋和小蚝一起煎，叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:8.0},
+ {id:"yong_tau_foo", en:"yong tau foo", zh:"酿豆腐", py:"niàng dòufu", onEn:"yong…", onZh:"酿", onZhPy:"niàng",
+  clueEn:"You choose tofu, vegetables and fishballs, and they cook them in soup.", clueZh:"自己挑豆腐、青菜和鱼丸，放在汤里煮。",
+  kindEn:"a soup dish", kindZh:"汤", insideEn:"tofu, vegetables, fishballs and soup", insideZh:"豆腐、青菜、鱼丸和汤",
+  tasteEn:"light", tasteZh:"很|清淡", whenEn:"for lunch", whenZh:"午餐",
+  clozeEn:"You pick tofu and vegetables, and they cook them in soup. This is ___.", clozeZh:"你挑豆腐和青菜，他们放在汤里煮，这叫做___。",
+  unitEn:"a bowl of", mZh:"碗", drink:false, price:6.0},
+ {id:"duck_rice", en:"duck rice", zh:"卤鸭饭", py:"lǔyā fàn", onEn:"duck…", onZh:"卤", onZhPy:"lǔ",
+  clueEn:"Duck braised in dark soy sauce and spices, served with rice.", clueZh:"用黑酱油和香料卤的鸭肉，配白饭。",
+  kindEn:"a rice dish", kindZh:"饭", insideEn:"braised duck, rice, egg and tofu", insideZh:"卤鸭、饭、卤蛋和豆干",
+  tasteEn:"savoury", tasteZh:"很|香", whenEn:"for lunch", whenZh:"午餐",
+  clozeEn:"Braised duck in dark soy sauce, served with rice, is ___.", clozeZh:"黑酱油卤的鸭肉配白饭，叫做___。",
+  unitEn:"a plate of", mZh:"盘", drink:false, price:5.0},
+ {id:"kopi", en:"kopi", zh:"咖啡", py:"kāfēi", onEn:"ko…", onZh:"咖", onZhPy:"kā",
+  clueEn:"A hot drink from the coffee shop, with condensed milk.", clueZh:"咖啡店的热饮，加炼奶。",
+  kindEn:"a hot drink", kindZh:"饮料", insideEn:"coffee and condensed milk", insideZh:"咖啡和炼奶",
+  tasteEn:"strong|and|sweet", tasteZh:"又浓|又甜", whenEn:"in the morning", whenZh:"早上",
+  clozeEn:"In the morning, many uncles drink a cup of ___ at the coffee shop.", clozeZh:"早上，很多安哥在咖啡店喝一杯___。",
+  unitEn:"a cup of", mZh:"杯", drink:true, price:1.8},
+ {id:"teh_tarik", en:"teh tarik", zh:"拉茶", py:"lāchá", onEn:"teh…", onZh:"拉", onZhPy:"lā",
+  clueEn:"Sweet milky tea, poured from high up to make it frothy.", clueZh:"加奶的甜茶，从高处拉下来，起很多泡。",
+  kindEn:"a hot drink", kindZh:"饮料", insideEn:"tea and condensed milk", insideZh:"红茶和炼奶",
+  tasteEn:"sweet|and|creamy", tasteZh:"又甜|又滑", whenEn:"in the evening", whenZh:"晚上",
+  clozeEn:"Sweet milky tea, poured from high up until it is frothy, is ___.", clozeZh:"从高处拉、起泡的奶茶叫做___。",
+  unitEn:"a cup of", mZh:"杯", drink:true, price:2.0},
+ {id:"curry_puff", en:"curry puff", zh:"咖喱角", py:"gālí jiǎo", onEn:"cur…", onZh:"咖", onZhPy:"gā",
+  clueEn:"A crispy pastry filled with curry potato and egg.", clueZh:"酥脆的点心，里面有咖喱马铃薯和鸡蛋。",
+  kindEn:"a snack", kindZh:"小吃", insideEn:"pastry, curry potato, chicken and egg", insideZh:"酥皮、咖喱马铃薯、鸡肉和鸡蛋",
+  tasteEn:"spicy|and|crispy", tasteZh:"又辣|又酥", whenEn:"as a snack", whenZh:"下午",
+  clozeEn:"A crispy pastry filled with curry potato is a ___.", clozeZh:"酥脆的、里面包咖喱马铃薯的点心叫做___。",
+  unitEn:"one", mZh:"个", drink:false, price:1.8}
+];
+
+/* Default photos: the lead (infobox) photo of each dish's English Wikipedia article,
+   looked up live from the Wikipedia API (freely licensed images only), with author and
+   licence read from the file's own page. Results are cached on this device for 30 days.
+   Set a title to null where the article's lead photo does not show the Singapore dish;
+   those items need your own photo (Settings > Items and photos) before they are used.   */
+const WIKI = {
+  chicken_rice:"Hainanese chicken rice", laksa:"Laksa", char_kway_teow:"Char kway teow", satay:"Satay",
+  roti_prata:"Roti canai", nasi_lemak:"Nasi lemak", bak_kut_teh:"Bak kut teh", hokkien_mee:"Hokkien mee",
+  chilli_crab:"Chilli crab", kaya_toast:"Kaya toast", carrot_cake:null, wanton_mee:"Wonton noodles",
+  fishball_noodles:null, popiah:"Popiah", rojak:null, chendol:"Cendol", ice_kacang:"Ais kacang",
+  mee_siam:"Mee siam", oyster_omelette:"Oyster omelette", yong_tau_foo:"Yong tau foo", duck_rice:null,
+  kopi:"Kopi (drink)", teh_tarik:"Teh tarik", curry_puff:"Curry puff"
+};
+/* Optional fixed photos, e.g. carrot_cake: {src:"photos/carrot_cake.jpg", author:"…", licence:"…"} */
+const PHOTOS = {};
+
+const LEVELS = [
+  {key:"name",     en:"Name it",            zh:"说出名字",   dEn:"Look at the photo. Say the name.", dZh:"看照片，说出名字。"},
+  {key:"complete", en:"Finish the sentence", zh:"完成句子",   dEn:"Hear a sentence. Say the missing word.", dZh:"听句子，说出缺少的词。"},
+  {key:"build",    en:"Build a sentence",   zh:"组句子",     dEn:"Put the words in order. Say the sentence.", dZh:"把词排好，再说出句子。"},
+  {key:"describe", en:"Describe it",        zh:"描述食物",   dEn:"Say 2 or 3 things about the food.", dZh:"说出食物的两三个特点。"},
+  {key:"order",    en:"Order at the stall", zh:"在摊位点餐", dEn:"Order your food, step by step.", dZh:"一步一步点餐。"}
+];
+
+/* ---------- UI text ---------- */
+const T = {
+ en:{home:"Home", today:"Start today’s practice", streak:"days in a row", best:"Best", bestStreak:"Longest run", sessions:"sessions done",
+   chooseLevel:"Or choose a level", recommended:"Suggested", progress:"Progress", settings:"Settings", credits:"Photo credits", about:"About",
+   whatIs:"What is this?", sayName:"Say the name.", finish:"Finish the sentence.", tapWords:"Tap the words in order.", describe:"Tell me about this food.", say23:"Say 2 or 3 things.",
+   order:"Order your food.", help:"Help me", gotIt:"I said it", notYet:"Not yet", next:"Next", listen:"Listen", hearAgain:"Hear it again",
+   cueSem:"Clue", cueFirst:"First sound", cueWord:"The word", cueModel:"Listen and say it", cueKey:"Key words", cueSent:"Read it",
+   startsWith:"It starts with", itIs:"It is", nowSay:"Now say it.", sayTogether:"Listen, then say it with me.",
+   kind:"What kind of food?", inside:"What is in it?", taste:"What does it taste like?", when:"When do you eat it?",
+   showAns:"Show", saidThis:"Said it", modelDesc:"Hear an example", done:"Done", stall:"Stallholder", you:"You",
+   setDone:"Set finished", score:"Score", newBest:"New personal best", keepGoing:"Practise these again:", again:"Do another set", stepUp:"Move up a level", stay:"Stay at this level", stepDown:"Try an easier level",
+   readyUp:"Two strong sessions in a row at this level. Ready for the next level?", tooHard:"That was hard. An easier level may help.",
+   of:"of", quit:"Stop", photoMissing:"Photo not available. Check the internet connection, or add your own photo in Settings.",
+   noVoice:"No voice found for this language on this device. Sound is off for this language.", item:"Item",
+   orderQ1:"Hello! What would you like?", orderQ2:"Eat here or take away?", orderQ3:"That’s {p}.",
+   orderA1:"{q} {n}, please.", orderA2a:"Take away, please.", orderA2b:"Eat here, please.", orderA3:"Here you are. Thank you!",
+   modelTpl:"{N} is {k}. It has {i}. It tastes {t}. People eat it {w}.",
+   buildA:"I would like|{u}|{n}", buildB:"The|{n}|is|{t}", buildC:"I|{v}|{n}|{w}", eat:"eat", drinkV:"drink"},
+ zh:{home:"首页", today:"开始今天的练习", streak:"天连续练习", best:"最佳", bestStreak:"最长连续", sessions:"次练习",
+   chooseLevel:"或者选择一个级别", recommended:"建议", progress:"进度", settings:"设置", credits:"照片来源", about:"说明",
+   whatIs:"这是什么？", sayName:"说出名字。", finish:"完成句子。", tapWords:"按顺序点词语。", describe:"说说这个食物。", say23:"说两三个特点。",
+   order:"点你的食物。", help:"提示", gotIt:"我说了", notYet:"还不会", next:"下一个", listen:"听", hearAgain:"再听一次",
+   cueSem:"线索", cueFirst:"第一个字", cueWord:"名字", cueModel:"听，然后跟着说", cueKey:"关键词", cueSent:"读出来",
+   startsWith:"第一个字是", itIs:"它是", nowSay:"现在说出来。", sayTogether:"听，然后跟我一起说。",
+   kind:"这是什么类的食物？", inside:"里面有什么？", taste:"味道怎么样？", when:"什么时候吃？",
+   showAns:"看答案", saidThis:"说了", modelDesc:"听例子", done:"完成", stall:"摊主", you:"你",
+   setDone:"练习完成", score:"得分", newBest:"新的个人最佳", keepGoing:"这些要多练习：", again:"再做一组", stepUp:"升一级", stay:"留在这一级", stepDown:"试简单一点的",
+   readyUp:"这一级已经连续两次表现很好。要升一级吗？", tooHard:"这次比较难。试简单一点的级别可能有帮助。",
+   of:"/", quit:"停止", photoMissing:"照片无法显示。请检查网络，或在设置里加入自己的照片。",
+   noVoice:"这台设备没有这个语言的语音，声音已关闭。", item:"项目",
+   orderQ1:"你好！要吃什么？", orderQ2:"在这里吃还是打包？", orderQ3:"一共{p}。",
+   orderA1:"老板，我要{q}{m}{n}。", orderA2a:"打包。", orderA2b:"在这里吃。", orderA3:"好，谢谢！",
+   modelTpl:"{N}是{k}。里面有{i}。味道{t}。人们常在{w}吃。",
+   buildA:"我|要|{u}|{n}", buildB:"{n}|{t}", buildC:"我|{w}|{v}|{n}", eat:"吃", drinkV:"喝"}
+};
+
+/* ---------- storage (all local) ---------- */
+const KEY = "hawkertalk.v1";
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(KEY+"."+k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(KEY+"."+k, JSON.stringify(v)); return true; }catch(e){ toast("Could not save on this device (storage full or private browsing)."); return false; } },
+  del(k){ try{ localStorage.removeItem(KEY+"."+k); }catch(e){} }
+};
+const DEFAULT_SETTINGS = {lang:"en", setLen:10, rate:0.85, autoSpeak:true, showOther:false, level:0, active:null, voiceMode:"mixed"};
+let S = Object.assign({}, DEFAULT_SETTINGS, store.get("settings", {}));
+const saveSettings = () => store.set("settings", S);
+const getSessions = () => store.get("sessions", []);
+const getCustom = () => store.get("custom", []);
+const getPhoto = id => store.get("photo."+id, null);
+
+function allItems(){ return DISHES.concat(getCustom()); }
+function activeItems(){
+  const all = allItems();
+  if(!Array.isArray(S.active)) return all;
+  const on = all.filter(d => S.active.includes(d.id));
+  return on.length ? on : all;
+}
+const L = () => S.lang;
+const t = k => (T[L()][k] ?? T.en[k] ?? k);
+const nm = d => L()==="zh" ? (d.zh || d.en) : d.en;
+const otherNm = d => L()==="zh" ? d.en : (d.zh ? d.zh + (d.py ? " ("+d.py+")" : "") : "");
+const f = (d, base) => L()==="zh" ? (d[base+"Zh"] || d[base+"En"] || "") : (d[base+"En"] || "");
+const words = s => (s||"").split("|").filter(Boolean);
+const joinW = arr => L()==="zh" ? arr.join("") : arr.join(" ");
+const plain = s => joinW(words(s));
+const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+
+function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function tpl(s, o){ return s.replace(/\{(\w)\}/g, (m,k) => o[k] ?? ""); }
+function shuffle(a){ a = a.slice(); for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function today(d=new Date()){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function money(p){
+  if(L()==="en") return "$" + p.toFixed(2);
+  const n = Math.round(p*10), dollars = Math.floor(n/10), dimes = n%10;
+  return zhNum(dollars) + "块" + (dimes ? zhNum(dimes) : "");
+}
+function zhNum(n){
+  const d = "零一二三四五六七八九";
+  if(n < 10) return n===2 ? "两" : d[n];
+  if(n < 20) return "十" + (n%10 ? d[n%10] : "");
+  if(n < 100) return d[Math.floor(n/10)] + "十" + (n%10 ? d[n%10] : "");
+  return String(n);
+}
+
+/* ---------- speech ---------- */
+let voices = [];
+function loadVoices(){ try{ voices = window.speechSynthesis ? speechSynthesis.getVoices() : []; }catch(e){ voices = []; } }
+if("speechSynthesis" in window){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function pickVoice(lang){
+  const pref = lang==="zh" ? ["zh-SG","zh-CN","cmn-Hans-CN","zh-TW","zh-HK","zh"] : ["en-SG","en-GB","en-AU","en-US","en"];
+  for(const p of pref){ const v = voices.find(v => v.lang && v.lang.replace("_","-").toLowerCase().startsWith(p.toLowerCase())); if(v) return v; }
+  return null;
+}
+let warnedVoice = {};
+/* Returns true if something will be heard. */
+function speak(text, lang=L()){
+  if(!text) return false;
+  stopAudio();
+  const clip = VOICE.url(lang, text);
+  if(clip){ try{ curAudio = new Audio(clip); curAudio.play().catch(() => {}); return true; }catch(e){} }
+  if(S.voiceMode === "mine") return false;
+  if(!("speechSynthesis" in window)) return false;
+  try{
+    const u = new SpeechSynthesisUtterance(String(text).replace(/\s*_+\s*/g, L()==="zh" ? "，……" : ", … ").replace(/…$/,"").replace(/…/g,""));
+    const v = pickVoice(lang);
+    u.lang = lang==="zh" ? "zh-CN" : "en-GB";
+    if(v) u.voice = v;
+    else if(voices.length && !warnedVoice[lang]){ warnedVoice[lang]=true; toast(t("noVoice")); return; }
+    u.rate = Number(S.rate) || 0.85;
+    speechSynthesis.speak(u);
+    return true;
+  }catch(e){ return false; /* sound is optional */ }
+}
+let curAudio = null;
+function stopAudio(){
+  try{ if(curAudio){ curAudio.pause(); curAudio = null; } }catch(e){}
+  try{ if("speechSynthesis" in window) speechSynthesis.cancel(); }catch(e){}
+}
+
+/* ---------- your own voice: recordings in IndexedDB, keyed by language + exact text ---------- */
+const clipKey = (lang, text) => lang + "|" + String(text).replace(/\s+/g," ").replace(/[\s.。!！?？…]+$/,"").trim().toLowerCase();
+const VOICE = {
+  db:null, urls:new Map(), ready:null,
+  open(){
+    if(this.ready) return this.ready;
+    this.ready = new Promise(res => {
+      try{
+        const rq = indexedDB.open("hawkertalk-voice", 1);
+        rq.onupgradeneeded = () => rq.result.createObjectStore("clips");
+        rq.onsuccess = () => { this.db = rq.result; this.loadAll().then(res); };
+        rq.onerror = () => res();
+      }catch(e){ res(); }
+    });
+    return this.ready;
+  },
+  tx(mode){ return this.db.transaction("clips", mode).objectStore("clips"); },
+  loadAll(){
+    return new Promise(res => {
+      if(!this.db) return res();
+      const st = this.tx("readonly"), rq = st.openCursor();
+      rq.onsuccess = () => { const c = rq.result; if(c){ this.setUrl(c.key, c.value.blob); c.continue(); } else res(); };
+      rq.onerror = () => res();
+    });
+  },
+  setUrl(key, blob){ const old = this.urls.get(key); if(old) URL.revokeObjectURL(old); this.urls.set(key, URL.createObjectURL(blob)); },
+  url(lang, text){ return this.urls.get(clipKey(lang, text)) || null; },
+  has(lang, text){ return this.urls.has(clipKey(lang, text)); },
+  put(lang, text, blob){
+    const key = clipKey(lang, text);
+    return new Promise((res, rej) => {
+      if(!this.db) return rej(new Error("Recordings cannot be saved in this browser."));
+      const rq = this.tx("readwrite").put({blob, text, lang, at:Date.now()}, key);
+      rq.onsuccess = () => { this.setUrl(key, blob); res(); };
+      rq.onerror = () => rej(new Error("Could not save the recording (storage full?)."));
+    });
+  },
+  del(lang, text){
+    const key = clipKey(lang, text);
+    return new Promise(res => {
+      const u = this.urls.get(key); if(u) URL.revokeObjectURL(u); this.urls.delete(key);
+      if(!this.db) return res();
+      const rq = this.tx("readwrite").delete(key); rq.onsuccess = rq.onerror = () => res();
+    });
+  },
+  all(){
+    return new Promise(res => {
+      const out = []; if(!this.db) return res(out);
+      const rq = this.tx("readonly").openCursor();
+      rq.onsuccess = () => { const c = rq.result; if(c){ out.push(c.value); c.continue(); } else res(out); };
+      rq.onerror = () => res(out);
+    });
+  },
+  clear(){ return new Promise(res => { this.urls.forEach(u => URL.revokeObjectURL(u)); this.urls.clear(); if(!this.db) return res(); const rq = this.tx("readwrite").clear(); rq.onsuccess = rq.onerror = () => res(); }); }
+};
+VOICE.open().then(() => { if(screen === "voice" || screen === "settings") render(); });
+
+/* recorder */
+const REC = {stream:null, mr:null, chunks:[], key:null, timer:null};
+function recSupported(){ return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder); }
+async function startRec(lang, text, btn){
+  if(REC.mr) { stopRec(); return; }
+  if(!recSupported()){ toast("Recording is not supported in this browser. Use Safari or Chrome, opened from the https:// web address."); return; }
+  stopAudio();
+  try{
+    REC.stream = REC.stream || await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true}});
+  }catch(e){ toast("Microphone not available. Allow microphone access for this site, then try again."); return; }
+  const types = ["audio/mp4","audio/webm;codecs=opus","audio/webm","audio/ogg"];
+  const mime = types.find(tp => { try{ return MediaRecorder.isTypeSupported(tp); }catch(e){ return false; } }) || "";
+  try{ REC.mr = mime ? new MediaRecorder(REC.stream, {mimeType:mime}) : new MediaRecorder(REC.stream); }
+  catch(e){ toast("Could not start recording."); return; }
+  REC.chunks = []; REC.key = {lang, text};
+  REC.mr.ondataavailable = e => { if(e.data && e.data.size) REC.chunks.push(e.data); };
+  REC.mr.onstop = async () => {
+    const blob = new Blob(REC.chunks, {type: REC.mr.mimeType || mime || "audio/webm"});
+    const k = REC.key; REC.mr = null; clearTimeout(REC.timer);
+    if(blob.size < 800){ toast("That recording was empty. Please try again."); render(); return; }
+    try{ await VOICE.put(k.lang, k.text, blob); speak(k.text, k.lang); }catch(err){ toast(err.message); }
+    render();
+    const btns = [...$app.querySelectorAll('[data-act="rec"]')], i = btns.findIndex(b => b.dataset.text === k.text);
+    const nb = btns[i+1] || btns[i]; if(nb) nb.focus({preventScroll:false});
+  };
+  REC.mr.start();
+  REC.timer = setTimeout(stopRec, 15000);
+  if(btn){ btn.innerHTML = "<span>■ Stop</span>"; btn.classList.add("recording"); btn.setAttribute("aria-pressed","true"); }
+  announce("Recording");
+}
+function stopRec(){ try{ if(REC.mr && REC.mr.state !== "inactive") REC.mr.stop(); }catch(e){} }
+function releaseMic(){ try{ if(REC.stream){ REC.stream.getTracks().forEach(tr => tr.stop()); REC.stream = null; } }catch(e){} }
+
+/* Everything the app can say for one item, grouped for the recording screen. */
+function phrasesFor(d){
+  const g = [];
+  g.push({h: L()==="zh" ? "命名" : "Naming", rows:[
+    {lbl:t("cueWord"), text:nm(d)}, {lbl:t("cueFirst"), text:cueSpeech(d,"first")}, {lbl:t("cueSem"), text:f(d,"clue")}].filter(r => r.text)});
+  g.push({h: L()==="zh" ? "句子" : "Sentences", rows:[{lbl:LEVELS[1][L()], text:clozeText(d), hint: L()==="zh" ? "读到空格时停一下。" : "Pause where the gap is."}]
+    .concat(buildVariants(d).map((tk,i) => ({lbl:LEVELS[2][L()]+" "+(i+1), text:joinW(tk)})))});
+  g.push({h: LEVELS[3][L()], rows:[{lbl:t("modelDesc"), text:describeModel(d)}]
+    .concat(["kind","inside","taste","when"].map(k => ({lbl:t(k), text: k==="taste" ? plain(f(d,"taste")) : f(d,k)})).filter(r => r.text))});
+  const sc = orderScript(d, 1, true);
+  g.push({h: LEVELS[4][L()], rows:[{lbl:t("you"), text:sc[0].say}, {lbl:t("stall"), text:sc[2].stall}]});
+  return g;
+}
+function generalPhrases(){
+  return [{h: L()==="zh" ? "指示" : "Instructions", rows:["whatIs","finish","tapWords","describe"].map(k => ({lbl:"", text:t(k)}))},
+          {h: LEVELS[4][L()], rows:[{lbl:t("stall"), text:t("orderQ1")}, {lbl:t("stall"), text:t("orderQ2")},
+            {lbl:t("you"), text:t("orderA2a")}, {lbl:t("you"), text:t("orderA2b")}, {lbl:t("you"), text:t("orderA3")}]}];
+}
+function autoSay(text){ if(S.autoSpeak) speak(text); }
+
+/* ---------- small helpers ---------- */
+const $app = document.getElementById("app");
+const ICON = {
+  speaker:'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" stroke="none"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>',
+  help:'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7v.5"/><circle cx="12" cy="17.5" r=".6" fill="currentColor"/></svg>',
+  check:'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12.5l5 5L20 6.5"/></svg>',
+  next:'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h13M13 6l6 6-6 6"/></svg>'
+};
+function toast(msg){
+  document.querySelectorAll(".toast").forEach(x => x.remove());
+  const el = document.createElement("div"); el.className="toast"; el.setAttribute("role","status"); el.textContent = msg;
+  document.body.appendChild(el); setTimeout(() => el.remove(), 3500);
+}
+function announce(msg){ const l = document.getElementById("live"); l.textContent = ""; setTimeout(()=> l.textContent = msg, 50); }
+function sayBtn(text, label){ return `<button class="btn small ghost" data-act="say" data-text="${esc(text)}">${ICON.speaker}<span>${esc(label || t("listen"))}</span></button>`; }
+
+function photoSrc(d){
+  const own = getPhoto(d.id); if(own) return {src:own, credit:null, own:true};
+  if(d.photo) return {src:d.photo, credit:d.credit || null};
+  const p = PHOTOS[d.id]; if(p && p.src) return {src:p.src, credit:p};
+  const w = wikiCache()[d.id]; if(w && w.src) return {src:w.src, credit:w};
+  return {src:null, credit:null, pending: !!WIKI[d.id] && !(w && w.fail) && !photoError};
+}
+/* An item can be practised once it has a photo, or while its default photo may still load. */
+function hasPhoto(d){ const p = photoSrc(d); return !!(p.src || p.pending); }
+
+/* ---------- live photo lookup (Wikipedia API, CORS via origin=*) ---------- */
+const API = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&";
+const wikiCache = () => store.get("wikiphotos", {});
+let photoLoad = null, photoError = false, lastTry = 0;
+function stripHtml(h){ try{ return (new DOMParser().parseFromString(String(h||""), "text/html").body.textContent || "").replace(/\s+/g," ").trim(); }catch(e){ return ""; } }
+async function getJson(url){ const r = await fetch(url); if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); }
+function loadWikiPhotos(){
+  if(photoLoad) return photoLoad;
+  const cache = wikiCache(), now = Date.now(), DAY = 86400000;
+  const need = Object.keys(WIKI).filter(id => WIKI[id] && !getPhoto(id) && !(cache[id] && (cache[id].src ? now - cache[id].at < 30*DAY : now - cache[id].at < DAY/24)));
+  if(!need.length) return Promise.resolve(false);
+  if("onLine" in navigator && !navigator.onLine){ if(!photoError){ photoError = true; refreshPhotos(); } return Promise.resolve(false); }
+  if(now - lastTry < 60000) return Promise.resolve(false);
+  lastTry = now;
+  photoLoad = (async () => {
+    try{
+      const titles = need.map(id => WIKI[id]);
+      const q1 = await getJson(API + "redirects=1&prop=pageimages&piprop=name&pilicense=free&titles=" + encodeURIComponent(titles.join("|")));
+      const qq = q1.query || {}, hop = {};
+      (qq.normalized||[]).concat(qq.redirects||[]).forEach(x => hop[x.from] = x.to);
+      const resolve = tt => { let k = tt, n = 0; while(hop[k] && n++ < 5) k = hop[k]; return k; };
+      const byTitle = {}; Object.values(qq.pages||{}).forEach(pg => { if(pg.pageimage) byTitle[pg.title] = pg.pageimage; });
+      const fileFor = {}; need.forEach(id => { const fn = byTitle[resolve(WIKI[id])]; if(fn) fileFor[id] = fn; });
+      const files = [...new Set(Object.values(fileFor))];
+      const info = {};
+      if(files.length){
+        const q2 = await getJson(API + "prop=imageinfo&iiprop=url%7Cextmetadata&iiurlwidth=960&iiextmetadatafilter=Artist%7CLicenseShortName%7CLicenseUrl&titles=" + encodeURIComponent(files.map(f => "File:" + f).join("|")));
+        const q2q = q2.query || {}, fhop = {};
+        (q2q.normalized||[]).forEach(x => fhop[x.to] = x.from);
+        Object.values(q2q.pages||{}).forEach(pg => {
+          const ii = pg.imageinfo && pg.imageinfo[0]; if(!ii) return;
+          const md = ii.extmetadata || {}, lic = (md.LicenseShortName && md.LicenseShortName.value) || "";
+          if(/non-free|fair use|copyrighted/i.test(lic)) return;
+          info[String(fhop[pg.title] || pg.title).replace(/^File:/,"").replace(/_/g," ")] = {
+            src: ii.thumburl || ii.url, desc: ii.descriptionurl || "", author: stripHtml(md.Artist && md.Artist.value) || "Unknown author",
+            licence: stripHtml(lic) || "see file page", licenceUrl: (md.LicenseUrl && md.LicenseUrl.value) || "" };
+        });
+      }
+      const c = wikiCache();
+      need.forEach(id => {
+        const fn = fileFor[id], inf = fn && info[fn.replace(/_/g," ")];
+        c[id] = inf ? Object.assign({file: fn.replace(/_/g," "), article: WIKI[id], at: now}, inf) : {fail:true, at: now};
+      });
+      store.set("wikiphotos", c);
+      photoError = false;
+      return true;
+    }catch(e){
+      photoError = true; refreshPhotos();
+      return false;
+    }finally{ photoLoad = null; }
+  })().then(changed => { if(changed) refreshPhotos(); return changed; });
+  return photoLoad;
+}
+/* After photos arrive: re-render screens without live state; in practice, swap the photo only. */
+function refreshPhotos(){
+  if(screen === "practice" && SESSION && ST){
+    const box = $app.querySelector(".practice > div:first-child"); if(box) box.innerHTML = photoHtml(ST.d);
+  } else render();
+}
+function photoHtml(d){
+  const p = photoSrc(d);
+  const alt = L()==="zh" ? "一道小贩中心食物的照片" : "Photo of a hawker centre food";
+  const img = p.src ? `<img src="${esc(p.src)}" alt="${alt}" data-photo>` : `<div class="ph">${esc(p.pending ? (L()==="zh" ? "照片加载中……" : "Loading photo…") : t("photoMissing"))}</div>`;
+  let cr = "";
+  if(p.own) cr = `<div class="credit">${L()==="zh" ? "你自己的照片" : "Your own photo"}</div>`;
+  else if(p.credit && p.credit.author) cr = `<div class="credit">Photo: ${esc(p.credit.author)}, ${esc(p.credit.licence||"")}${p.credit.desc ? ", via Wikimedia" : ""}. <a href="#" data-act="credits">Credits</a></div>`;
+  if(p.pending && !p.src) setTimeout(loadWikiPhotos, 0);
+  return `<div class="photo">${img}</div>${cr}`;
+}
+document.addEventListener("error", e => {
+  const el = e.target;
+  if(el && el.tagName==="IMG" && el.hasAttribute("data-photo")){
+    const box = el.parentElement; el.remove();
+    if(box && !box.querySelector(".ph")){ const ph = document.createElement("div"); ph.className="ph"; ph.textContent = t("photoMissing"); box.appendChild(ph); }
+  }
+}, true);
+
+/* ---------- routing ---------- */
+let screen = "home";
+let SESSION = null;
+function go(name){ if(name!=="practice") SESSION = null; if(name!=="voice"){ stopRec(); releaseMic(); } screen = name; render(); window.scrollTo(0,0); }
+
+function render(){
+  document.documentElement.lang = L()==="zh" ? "zh-Hans" : "en-GB";
+  document.querySelectorAll('[data-act="lang"]').forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang===L())));
+  document.getElementById("brand").textContent = L()==="zh" ? "小贩中心说说看" : "Hawker Talk";
+  const views = {voice:viewVoice, home:viewHome, practice:viewPractice, result:viewResult, progress:viewProgress, settings:viewSettings, credits:viewCredits, about:viewAbout};
+  try{ $app.innerHTML = (views[screen] || viewHome)(); }
+  catch(err){ console.error(err); $app.innerHTML = `<div class="card"><h1>Something went wrong</h1><p>${esc(err.message)}</p><button class="btn pri" data-act="home">Home</button></div>`; }
+  document.getElementById("foot").innerHTML = `<nav class="row" aria-label="${L()==="zh"?"更多":"More"}"><a href="#" data-act="progress">${t("progress")}</a> · <a href="#" data-act="settings">${t("settings")}</a> · <a href="#" data-act="credits">${t("credits")}</a> · <a href="#" data-act="about">${t("about")}</a></nav><p>${L()==="zh" ? "进度只保存在这台设备上，不收集姓名或个人资料。" : "Progress is saved only on this device. No names or personal details are collected."}</p>`;
+  const h = $app.querySelector("h1"); if(h){ h.setAttribute("tabindex","-1"); }
+}
+
+/* ---------- stats ---------- */
+function daysSet(){ return [...new Set(getSessions().map(s => s.day))].sort(); }
+function streakNow(){
+  const set = new Set(daysSet()); let n = 0; const d = new Date();
+  if(!set.has(today(d))) d.setDate(d.getDate()-1);
+  while(set.has(today(d))){ n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+function longestStreak(){
+  const days = daysSet(); let best = 0, run = 0, prev = null;
+  for(const k of days){
+    const d = new Date(k+"T12:00:00");
+    if(prev && Math.round((d - prev)/86400000) === 1) run++; else run = 1;
+    best = Math.max(best, run); prev = d;
+  }
+  return best;
+}
+function bestFor(level){ const s = getSessions().filter(x => x.level===LEVELS[level].key && x.lang===L()); return s.length ? Math.max(...s.map(x => x.pct)) : null; }
+function lastFor(level, n){ return getSessions().filter(x => x.level===LEVELS[level].key && x.lang===L()).slice(-n); }
+
+/* ---------- HOME ---------- */
+function viewHome(){
+  const st = streakNow(), n = getSessions().length, lv = S.level;
+  const cards = LEVELS.map((l,i) => {
+    const b = bestFor(i);
+    return `<button class="level ${i===lv?"rec":""}" data-act="start" data-level="${i}">
+      <span class="n">${L()==="zh"?"第"+(i+1)+"级":"Level "+(i+1)} ${i===lv?`<span class="badge">${t("recommended")}</span>`:""}</span>
+      <span class="t">${esc(l[L()])}</span><span class="d">${esc(L()==="zh"?l.dZh:l.dEn)}</span>
+      <span class="pb">${b!==null ? t("best")+": "+b+"%" : "&nbsp;"}</span></button>`;
+  }).join("");
+  const noPhotos = photoError && !allItems().some(d => photoSrc(d).src);
+  const warn = noPhotos ? `<div class="note" style="margin-bottom:16px">${L()==="zh" ? "照片需要网络才能第一次加载。请连接网络，或在设置里加入自己的照片。" : "Photos need the internet the first time they load. Connect to the internet, or add your own photos in Settings."}</div>` : "";
+  return `<h1>${L()==="zh"?"今天练习说话":"Practise talking about food"}</h1>${warn}
+  <div class="grid g3" style="margin-bottom:18px">
+    <div class="card"><div class="stat">${st}</div><div class="statlbl">${t("streak")}</div></div>
+    <div class="card"><div class="stat">${longestStreak()}</div><div class="statlbl">${t("bestStreak")}</div></div>
+    <div class="card"><div class="stat">${n}</div><div class="statlbl">${t("sessions")}</div></div>
+  </div>
+  <div class="card stack" style="margin-bottom:18px">
+    <button class="btn pri" style="width:100%;min-height:88px;font-size:1.25em" data-act="start" data-level="${lv}">${ICON.next}<span>${t("today")}</span></button>
+    <p class="muted" style="margin:8px 0 0">${esc(LEVELS[lv][L()])} · ${setLenFor(lv)} ${L()==="zh"?"题":"items"} · ${L()==="zh"?"约10分钟":"about 10 minutes"}</p>
+  </div>
+  <h2>${t("chooseLevel")}</h2>
+  <div class="grid g3">${cards}</div>`;
+}
+function setLenFor(level){ const n = Number(S.setLen)||10; return LEVELS[level].key==="order" ? Math.max(3, Math.ceil(n/2)) : n; }
+
+/* ---------- SESSION ---------- */
+function pickItems(level, n){
+  const key = LEVELS[level].key, hist = {};
+  getSessions().filter(s => s.level===key).forEach(s => s.items.forEach(it => { (hist[it.id] = hist[it.id] || []).push(it.score); }));
+  const usable = activeItems().filter(hasPhoto);
+  const pool = (usable.length ? usable : activeItems()).map(d => {
+    const h = hist[d.id]; const mean = h ? h.reduce((a,b)=>a+b,0)/h.length : 0.5;
+    return {d, w: mean + Math.random()*0.5};
+  }).sort((a,b) => a.w - b.w).map(x => x.d);
+  /* hardest and least-practised first; repeat items only if the bank is smaller than the set */
+  if(pool.length >= n) return shuffle(pool.slice(0, n));
+  /* small bank: cycle through it in rounds, never the same item twice in a row */
+  const out = [];
+  while(out.length < n){ let r = shuffle(pool); if(r.length > 1 && out.length && r[0] === out[out.length-1]) r.push(r.shift()); out.push(...r); }
+  return out.slice(0, n);
+}
+async function startSession(level){
+  if(photoLoad) await Promise.race([photoLoad, new Promise(r => setTimeout(r, 5000))]);
+  level = Math.max(0, Math.min(LEVELS.length-1, level|0));
+  const items = pickItems(level, setLenFor(level));
+  SESSION = {level, key:LEVELS[level].key, items, i:0, results:[], start:new Date().toISOString(), lang:L(), id: Date.now().toString(36)};
+  screen = "practice"; newStep(); render(); window.scrollTo(0,0);
+  speakPrompt();
+}
+/* per-item working state */
+let ST = null;
+function newStep(){
+  const d = SESSION.items[SESSION.i];
+  ST = {d, cue:0, revealed:false, turn:0, turnRes:[], errors:0, hinted:false, built:[], feats:{}, shown:{}};
+  if(SESSION.key==="build"){ ST.sentence = buildSentence(d); ST.tiles = shuffleTiles(ST.sentence); }
+  if(SESSION.key==="order"){ ST.qty = 1; ST.away = Math.random()<0.5; ST.script = orderScript(d, ST.qty, ST.away); }
+}
+function cuesFor(key){ return key==="name" ? ["sem","first","word","model"] : key==="complete" ? ["first","word","model"] : key==="order" ? ["key","sent","model"] : []; }
+
+function buildVariants(d){
+  const n = nm(d), u = L()==="zh" ? "一"+(d.mZh||"份") : (d.unitEn||"a plate of");
+  const tTok = words(f(d,"taste")), w = L()==="zh" ? (d.whenZh||"午餐") : (d.whenEn||"for lunch"), v = d.drink ? t("drinkV") : t("eat");
+  const out = [words(T[L()].buildA).flatMap(x => x==="{u}" ? [u] : x==="{n}" ? [n] : [x])];
+  if(tTok.length) out.push(words(T[L()].buildB).flatMap(x => x==="{n}" ? [n] : x==="{t}" ? tTok : [x]));
+  out.push(words(T[L()].buildC).flatMap(x => x==="{n}" ? [n] : x==="{w}" ? [w] : x==="{v}" ? [v] : [x]));
+  return out.map(tk => tk.filter(Boolean));
+}
+function buildSentence(d){ const vs = buildVariants(d); return vs[Math.floor(Math.random()*vs.length)]; }
+function shuffleTiles(toks){
+  const idx = toks.map((_,i)=>i); if(idx.length < 2) return idx;
+  let s; do{ s = shuffle(idx); } while(s.every((v,i)=>v===i));
+  return s;
+}
+function orderScript(d, q, away){
+  const n = nm(d), price = money((d.price||5)*q);
+  const qWord = L()==="zh" ? (q===1?"一":"两") : (q===1?"One":"Two");
+  return [
+    {stall:t("orderQ1"), say: tpl(t("orderA1"), {q:qWord, n, m:d.mZh||"份"}), key: L()==="zh" ? ["老板", qWord+(d.mZh||"份"), n] : [qWord.toLowerCase(), n, "please"]},
+    {stall:t("orderQ2"), say: away ? t("orderA2a") : t("orderA2b"), key: L()==="zh" ? [away?"打包":"在这里吃"] : [away?"take away":"eat here"]},
+    {stall: tpl(t("orderQ3"), {p:price}), say: t("orderA3"), key: L()==="zh" ? ["好","谢谢"] : ["here you are","thank you"]}
+  ];
+}
+function clozeText(d){ return f(d,"cloze") || (L()==="zh" ? "我肚子饿了，想吃___。" : "I am hungry. I want to eat ___."); }
+function speakPrompt(){
+  if(!SESSION) return; const d = ST.d, k = SESSION.key;
+  if(k==="name") autoSay(t("whatIs"));
+  else if(k==="complete") autoSay(clozeText(d));
+  else if(k==="build") autoSay(t("tapWords"));
+  else if(k==="describe") autoSay(t("describe"));
+  else if(k==="order") autoSay(ST.script[ST.turn].stall);
+}
+
+function viewPractice(){
+  if(!SESSION){ return viewHome(); }
+  const d = ST.d, k = SESSION.key, n = SESSION.items.length, i = SESSION.i;
+  const top = `<div class="row" style="justify-content:space-between;margin-bottom:10px">
+     <span class="muted">${esc(LEVELS[SESSION.level][L()])} · ${i+1} ${t("of")} ${n}</span>
+     <button class="btn small ghost" data-act="quit">${t("quit")}</button></div>
+     <div class="progressbar" aria-hidden="true" style="margin-bottom:16px"><span style="width:${Math.round(i/n*100)}%"></span></div>`;
+  const body = k==="name" ? vName(d) : k==="complete" ? vComplete(d) : k==="build" ? vBuild(d) : k==="describe" ? vDescribe(d) : vOrder(d);
+  return top + `<div class="practice"><div>${photoHtml(d)}</div><div class="stack">${body}</div></div>`;
+}
+function answerBlock(d){
+  const other = S.showOther && otherNm(d) ? `<div class="other">${esc(otherNm(d))}</div>` : "";
+  return `<div class="answer">${esc(nm(d))}${L()==="zh" && d.py ? `<span class="py">${esc(d.py)}</span>` : ""}</div>${other}`;
+}
+function cueHtml(d, c){
+  if(c==="sem") return `<div class="cue"><span class="lbl">${t("cueSem")}</span>${esc(f(d,"clue"))}</div>`;
+  if(c==="first"){ const on = L()==="zh" ? `${d.onZh||nm(d)[0]} <span class="muted">${esc(d.onZhPy||"")}</span>` : esc(d.onEn || nm(d).slice(0,2)+"…");
+    return `<div class="cue"><span class="lbl">${t("cueFirst")}</span>${t("startsWith")} <strong>${on}</strong></div>`; }
+  if(c==="word") return `<div class="cue"><span class="lbl">${t("cueWord")}</span>${answerBlock(d)}</div>`;
+  if(c==="model") return `<div class="cue"><span class="lbl">${t("cueModel")}</span>${answerBlock(d)}<div style="margin-top:8px">${sayBtn(nm(d), t("hearAgain"))}</div></div>`;
+  return "";
+}
+function cueSpeech(d, c){
+  if(c==="sem") return f(d,"clue");
+  if(c==="first") return L()==="zh" ? (d.onZh||"") : (d.onEn||"").replace("…","");
+  if(c==="word") return "";
+  if(c==="model") return nm(d);
+  return "";
+}
+function scoringButtons(maxCue){
+  const used = ST.cue;
+  return `<div class="actions">
+    <button class="btn ok" data-act="got">${ICON.check}<span>${t("gotIt")}</span></button>
+    <button class="btn" data-act="cue" ${used>=maxCue?"disabled":""}>${ICON.help}<span>${t("help")}</span></button>
+    <button class="btn ghost" data-act="notyet"><span>${t("notYet")}</span></button></div>`;
+}
+function revealBlock(d, extra){
+  return `<div class="cue" style="border-color:var(--ok);background:var(--ok-soft)"><span class="lbl" style="color:var(--ok)">${t("itIs")}</span>${answerBlock(d)}${extra||""}<div class="row" style="margin-top:10px">${sayBtn(nm(d), t("hearAgain"))}</div></div>
+  <button class="btn pri" style="width:100%;min-height:80px" data-act="next">${ICON.next}<span>${t("next")}</span></button>`;
+}
+function vName(d){
+  const cues = cuesFor("name").slice(0, ST.cue).map(c => cueHtml(d, c)).join("");
+  if(ST.revealed) return `<h1 class="prompt">${t("whatIs")}</h1>${revealBlock(d)}`;
+  return `<h1 class="prompt">${t("whatIs")}</h1><p class="muted" style="margin:0">${t("sayName")}</p>${sayBtn(t("whatIs"))}${cues}${scoringButtons(4)}`;
+}
+function vComplete(d){
+  const s = clozeText(d), parts = s.split("___");
+  const sent = `<p class="sentence">${esc(parts[0])}<span class="blank"><span class="sr">${L()==="zh"?"空格":"blank"}</span></span>${esc(parts[1]||"")}</p>`;
+  const cues = cuesFor("complete").slice(0, ST.cue).map(c => cueHtml(d, c)).join("");
+  if(ST.revealed) return `<h1 class="prompt">${t("finish")}</h1>${sent.replace('<span class="blank"', '<span class="blank" style="border-color:var(--ok)"')}${revealBlock(d)}`;
+  return `<h1 class="prompt">${t("finish")}</h1>${sent}${sayBtn(s)}${cues}${scoringButtons(3)}`;
+}
+function vBuild(d){
+  const toks = ST.sentence, done = ST.built.length === toks.length;
+  const built = `<div class="built" aria-label="${L()==="zh"?"你的句子":"Your sentence"}">${ST.built.map(i => `<span>${esc(toks[i])}</span>`).join("")}</div>`;
+  const nextIdx = ST.built.length;
+  const tiles = ST.tiles.filter(i => !ST.built.includes(i)).map(i => `<button class="tile ${ST.hinted && i===nextIdx ? "hint":""}" data-act="tile" data-i="${i}">${esc(toks[i])}</button>`).join("");
+  if(done){
+    const sentence = joinW(toks) + (L()==="zh" ? "。" : ".");
+    return `<h1 class="prompt">${t("nowSay")}</h1>${built}<p class="sentence">${esc(sentence)}</p>${sayBtn(sentence, t("hearAgain"))}
+      <button class="btn pri" style="width:100%;min-height:80px" data-act="next">${ICON.next}<span>${t("next")}</span></button>`;
+  }
+  return `<h1 class="prompt">${t("tapWords")}</h1>${built}<div class="tiles">${tiles}</div>
+     <div class="row"><button class="btn small" data-act="buildhint" ${ST.hinted?"disabled":""}>${ICON.help}<span>${t("help")}</span></button>${sayBtn(joinW(toks), t("listen"))}</div>`;
+}
+function vDescribe(d){
+  const feats = [["kind","kind"],["inside","inside"],["taste","taste"],["when","when"]];
+  const rows = feats.map(([k, field]) => {
+    const ans = field==="taste" ? plain(f(d,"taste")) : f(d, field);
+    if(!ans) return "";
+    const said = ST.feats[k], shown = ST.shown[k];
+    return `<div class="featrow"><div><div class="q">${esc(t(k))}</div>${shown ? `<div class="a">${esc(ans)}</div>` : ""}</div>
+      <div class="feat"><button class="chip" data-act="showfeat" data-k="${k}" ${shown?"disabled":""}>${t("showAns")}</button>
+      <button class="chip" data-act="feat" data-k="${k}" aria-pressed="${said?"true":"false"}">${said?ICON.check.replace('<svg','<svg width="18" height="18"'):""} ${t("saidThis")}</button></div></div>`;
+  }).join("");
+  return `<h1 class="prompt">${t("describe")}</h1><p class="muted" style="margin:0">${t("say23")}</p>
+   <div>${rows}</div>
+   <div class="row">${sayBtn(describeModel(d), t("modelDesc"))}</div>
+   <button class="btn pri" style="width:100%;min-height:80px" data-act="descdone">${ICON.next}<span>${t("done")}</span></button>`;
+}
+function describeModel(d){
+  return tpl(t("modelTpl"), {N:cap(nm(d)), k:f(d,"kind"), i:f(d,"inside"), t:plain(f(d,"taste")), w:f(d,"when")});
+}
+function vOrder(d){
+  const sc = ST.script, turn = ST.turn, cur = sc[turn];
+  let hist = "";
+  for(let j=0;j<turn;j++) hist += `<div class="stall"><div class="who">${t("stall")}</div>${esc(sc[j].stall)}</div><div class="cue" style="border-color:var(--ok);background:var(--ok-soft)"><span class="lbl" style="color:var(--ok)">${t("you")}</span>${esc(sc[j].say)}</div>`;
+  const stall = `<div class="stall"><div class="who">${t("stall")}</div><span style="font-size:1.2em;font-weight:650">${esc(cur.stall)}</span><div style="margin-top:8px">${sayBtn(cur.stall)}</div></div>`;
+  let cues = "";
+  if(ST.cue>=1) cues += `<div class="cue"><span class="lbl">${t("cueKey")}</span><div class="chips">${cur.key.map(k=>`<span class="chip" style="cursor:default">${esc(k)}</span>`).join("")}</div></div>`;
+  if(ST.cue>=2) cues += `<div class="cue"><span class="lbl">${t("cueSent")}</span><span class="sentence">${esc(cur.say)}</span></div>`;
+  if(ST.cue>=3) cues += `<div class="cue"><span class="lbl">${t("cueModel")}</span>${sayBtn(cur.say, t("hearAgain"))}</div>`;
+  if(ST.revealed) return `<h1 class="prompt">${t("order")}</h1>${hist}${stall}<div class="cue" style="border-color:var(--ok);background:var(--ok-soft)"><span class="lbl" style="color:var(--ok)">${t("you")}</span><span class="sentence">${esc(cur.say)}</span><div style="margin-top:8px">${sayBtn(cur.say, t("hearAgain"))}</div></div>
+    <button class="btn pri" style="width:100%;min-height:80px" data-act="turnnext">${ICON.next}<span>${t("next")}</span></button>`;
+  return `<h1 class="prompt">${t("order")}</h1><p class="muted" style="margin:0">${esc(nm(d))}${S.showOther && otherNm(d) ? " · "+esc(otherNm(d)) : ""}</p>${hist}${stall}${cues}${scoringButtons(3)}`;
+}
+
+/* scoring: item score 0..1. Cue labels kept for the CSV. */
+const CUE_LABEL = {name:["independent","semantic cue","first sound cue","written word","repetition after model"],
+  complete:["independent","first sound cue","written word","repetition after model"],
+  order:["independent","key words","written sentence","repetition after model"]};
+function scoreFromCue(key, cue){ const n = CUE_LABEL[key].length; return Math.max(0, (n - cue) / n); }
+
+function recordItem(rec){ SESSION.results.push(Object.assign({id:ST.d.id, item:ST.d.en}, rec)); }
+function advance(){
+  SESSION.i++;
+  if(SESSION.i >= SESSION.items.length){ finishSession(); return; }
+  newStep(); render(); focusTop(); speakPrompt();
+}
+function focusTop(){ const h = $app.querySelector("h1"); if(h) h.focus({preventScroll:true}); window.scrollTo(0,0); }
+
+function finishSession(){
+  const res = SESSION.results;
+  const pct = res.length ? Math.round(res.reduce((a,r)=>a+r.score,0)/res.length*100) : 0;
+  const prevBest = bestFor(SESSION.level);
+  const rec = {id:SESSION.id, day:today(), start:SESSION.start, end:new Date().toISOString(), level:SESSION.key, lang:SESSION.lang, pct,
+    items: res.map(r => ({id:r.id, item:r.item, detail:r.detail||"", result:r.result, score:Math.round(r.score*100)/100}))};
+  const all = getSessions(); all.push(rec);
+  if(!store.set("sessions", all)) { /* toast shown */ }
+  LAST = {rec, prevBest, level:SESSION.level, weak: res.filter(r => r.score < 0.5).map(r => r.id)};
+  SESSION = null; screen = "result"; render(); focusTop();
+}
+let LAST = null;
+function viewResult(){
+  if(!LAST) return viewHome();
+  const {rec, prevBest, level, weak} = LAST;
+  const isBest = prevBest === null ? false : rec.pct > prevBest;
+  const items = allItems();
+  const weakNames = [...new Set(weak)].map(id => items.find(d => d.id===id)).filter(Boolean).map(nm);
+  const recent = lastFor(level, 2);
+  let advice = "";
+  if(level < LEVELS.length-1 && recent.length===2 && recent.every(s => s.pct >= 80) && S.level===level)
+    advice = `<div class="card stack"><p style="margin:0"><strong>${t("readyUp")}</strong></p><div class="row"><button class="btn pri" data-act="setlevel" data-level="${level+1}">${t("stepUp")}</button><button class="btn ghost" data-act="home">${t("stay")}</button></div></div>`;
+  else if(level > 0 && rec.pct < 40)
+    advice = `<div class="card stack"><p style="margin:0">${t("tooHard")}</p><div class="row"><button class="btn" data-act="setlevel" data-level="${level-1}">${t("stepDown")}</button></div></div>`;
+  return `<h1>${t("setDone")}</h1>
+   <div class="grid g3" style="margin-bottom:16px">
+     <div class="card"><div class="result-big">${rec.pct}%</div><div class="statlbl">${t("score")} · ${esc(LEVELS[level][L()])}</div>${isBest?`<p style="margin:.5em 0 0;font-weight:700;color:var(--ok)">${t("newBest")}</p>`:""}</div>
+     <div class="card"><div class="stat">${streakNow()}</div><div class="statlbl">${t("streak")}</div></div>
+     <div class="card"><div class="stat">${bestFor(level) ?? rec.pct}%</div><div class="statlbl">${t("best")}</div></div>
+   </div>
+   ${weakNames.length ? `<div class="card" style="margin-bottom:16px"><p style="margin-top:0">${t("keepGoing")}</p><p style="margin:0;font-weight:700">${weakNames.map(esc).join(" · ")}</p></div>` : ""}
+   ${advice}
+   <div class="row" style="margin-top:16px"><button class="btn pri" data-act="start" data-level="${level}">${t("again")}</button><button class="btn" data-act="home">${t("home")}</button><button class="btn ghost" data-act="progress">${t("progress")}</button></div>`;
+}
+
+/* ---------- PROGRESS ---------- */
+function viewProgress(){
+  const ss = getSessions();
+  const items = allItems();
+  const rows = ss.slice(-30).reverse().map(s => {
+    const lv = LEVELS.find(l => l.key===s.level);
+    return `<tr><td>${esc(s.day)}</td><td>${esc(lv ? lv.en : s.level)}</td><td>${s.lang==="zh"?"中文":"English"}</td><td>${s.items.length}</td><td><strong>${s.pct}%</strong></td></tr>`;
+  }).join("");
+  const per = {};
+  ss.forEach(s => s.items.forEach(it => { const p = per[it.id] = per[it.id] || {n:0, sum:0, ind:0}; p.n++; p.sum += it.score; if(it.result==="independent" || it.score===1) p.ind++; }));
+  const itemRows = Object.entries(per).map(([id,p]) => {
+    const d = items.find(x => x.id===id); return {name: d ? d.en + (d.zh ? " / "+d.zh : "") : id, ...p};
+  }).sort((a,b) => a.sum/a.n - b.sum/b.n).map(r => `<tr><td>${esc(r.name)}</td><td>${r.n}</td><td>${Math.round(r.sum/r.n*100)}%</td><td>${Math.round(r.ind/r.n*100)}%</td></tr>`).join("");
+  const bests = LEVELS.map((l,i) => { const s = ss.filter(x => x.level===l.key); return `<tr><td>${esc(l.en)}</td><td>${s.length}</td><td>${s.length?Math.max(...s.map(x=>x.pct))+"%":"–"}</td><td>${s.length?s[s.length-1].pct+"%":"–"}</td></tr>`; }).join("");
+  return `<h1>${t("progress")}</h1>
+   <div class="grid g3" style="margin-bottom:16px">
+     <div class="card"><div class="stat">${streakNow()}</div><div class="statlbl">${t("streak")}</div></div>
+     <div class="card"><div class="stat">${longestStreak()}</div><div class="statlbl">${t("bestStreak")}</div></div>
+     <div class="card"><div class="stat">${ss.length}</div><div class="statlbl">${t("sessions")}</div></div>
+   </div>
+   <div class="row" style="margin-bottom:16px"><button class="btn pri" data-act="csv">Download sessions (CSV)</button><button class="btn" data-act="backup">Back up all data (JSON)</button></div>
+   <div class="card" style="margin-bottom:16px"><h2>By level</h2><div class="tablewrap"><table><thead><tr><th scope="col">Level</th><th scope="col">Sessions</th><th scope="col">Best</th><th scope="col">Latest</th></tr></thead><tbody>${bests}</tbody></table></div></div>
+   <div class="card" style="margin-bottom:16px"><h2>Recent sessions</h2>${rows ? `<div class="tablewrap"><table><thead><tr><th scope="col">Date</th><th scope="col">Level</th><th scope="col">Language</th><th scope="col">Items</th><th scope="col">Score</th></tr></thead><tbody>${rows}</tbody></table></div>` : `<p class="muted">No sessions yet.</p>`}</div>
+   <div class="card"><h2>By item (hardest first)</h2><p class="muted" style="font-size:.85em">Mean item score across all levels, and how often it was done with no help. Useful for choosing treated and untreated item sets in Settings.</p>${itemRows ? `<div class="tablewrap"><table><thead><tr><th scope="col">Item</th><th scope="col">Attempts</th><th scope="col">Mean score</th><th scope="col">No help</th></tr></thead><tbody>${itemRows}</tbody></table></div>` : `<p class="muted">No data yet.</p>`}</div>`;
+}
+function csvCell(v){ v = String(v ?? ""); if(/^[=+\-@]/.test(v)) v = "'" + v; return /[",\n]/.test(v) ? '"' + v.replace(/"/g,'""') + '"' : v; }
+function exportCsv(){
+  const ss = getSessions();
+  if(!ss.length){ toast("No sessions to export yet."); return; }
+  const head = ["session_id","date","start_time","end_time","level","language","item_no","item","detail","result","item_score_pct","session_score_pct"];
+  const lines = [head.join(",")];
+  ss.forEach(s => s.items.forEach((it, k) => {
+    const st = new Date(s.start), en = new Date(s.end);
+    lines.push([s.id, s.day, st.toTimeString().slice(0,5), en.toTimeString().slice(0,5), s.level, s.lang, k+1, it.item, it.detail, it.result, Math.round(it.score*100), s.pct].map(csvCell).join(","));
+  }));
+  download("hawker-talk-sessions-" + today() + ".csv", "﻿" + lines.join("\r\n"), "text/csv;charset=utf-8");
+}
+function exportJson(){
+  const data = {app:"hawker-talk", version:1, exported:new Date().toISOString(), settings:S, sessions:getSessions(), custom:getCustom()};
+  download("hawker-talk-backup-" + today() + ".json", JSON.stringify(data, null, 1), "application/json");
+}
+function download(name, text, type){
+  try{
+    const blob = new Blob([text], {type}); const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = name; a.textContent = name; a.style.display = "none"; document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }catch(e){ toast("Download failed on this browser."); }
+}
+function importJson(file){
+  const r = new FileReader();
+  r.onload = () => {
+    try{
+      const data = JSON.parse(r.result);
+      if(data.app !== "hawker-talk" || !Array.isArray(data.sessions)) throw new Error("not a Hawker Talk backup");
+      const cur = getSessions(), ids = new Set(cur.map(s => s.id));
+      const merged = cur.concat(data.sessions.filter(s => s && s.id && !ids.has(s.id) && Array.isArray(s.items)));
+      merged.sort((a,b) => String(a.start).localeCompare(String(b.start)));
+      store.set("sessions", merged);
+      if(Array.isArray(data.custom)){ const cc = getCustom(), cids = new Set(cc.map(c=>c.id)); store.set("custom", cc.concat(data.custom.filter(c => c && c.id && !cids.has(c.id)))); }
+      toast("Backup restored: " + (merged.length - cur.length) + " sessions added.");
+      render();
+    }catch(e){ toast("That file could not be read (" + e.message + ")."); }
+  };
+  r.onerror = () => toast("That file could not be read.");
+  r.readAsText(file);
+}
+
+/* ---------- SETTINGS ---------- */
+function viewSettings(){
+  const items = allItems(), act = Array.isArray(S.active) ? S.active : items.map(d => d.id);
+  const grid = items.map(d => {
+    const p = photoSrc(d);
+    return `<div class="item"><div class="thumb">${p.src ? `<img src="${esc(p.src)}" alt="" data-photo loading="lazy">` : "No photo"}</div>
+      <div class="body"><label class="check"><input type="checkbox" data-act="toggleitem" data-id="${esc(d.id)}" ${act.includes(d.id)?"checked":""}><span>${esc(d.en)}${d.zh?` · <span lang="zh-Hans">${esc(d.zh)}</span>`:""}</span></label>
+      <div class="row"><label class="btn small" style="cursor:pointer">Use my photo<input type="file" accept="image/*" class="sr" data-act="photo" data-id="${esc(d.id)}"></label>
+      ${getPhoto(d.id) ? `<button class="btn small ghost" data-act="resetphoto" data-id="${esc(d.id)}">Reset</button>` : ""}
+      ${d.custom ? `<button class="btn small ghost" data-act="delcustom" data-id="${esc(d.id)}">Delete</button>` : ""}</div></div></div>`;
+  }).join("");
+  return `<h1>${t("settings")}</h1>
+  <div class="note" style="margin-bottom:16px">These settings are for the therapist or family member setting up practice.</div>
+  <div class="grid g2" style="margin-bottom:16px">
+   <div class="card">
+    <h2>Practice</h2>
+    <div class="field"><label for="setLen">Items per set</label><select id="setLen" data-act="setting" data-k="setLen">${[5,8,10,15,20].map(n=>`<option ${Number(S.setLen)===n?"selected":""}>${n}</option>`).join("")}</select><span class="muted" style="font-size:.8em">“Order at the stall” uses half this number, as each order has three turns.</span></div>
+    <div class="field"><label for="level">Suggested level (used for “Start today’s practice”)</label><select id="level" data-act="setting" data-k="level">${LEVELS.map((l,i)=>`<option value="${i}" ${S.level===i?"selected":""}>Level ${i+1}: ${esc(l.en)}</option>`).join("")}</select></div>
+    <label class="check"><input type="checkbox" data-act="setting" data-k="showOther" ${S.showOther?"checked":""}><span>Show the other language’s name with the answer</span></label>
+   </div>
+   <div class="card">
+    <h2>Sound</h2>
+    <label class="check"><input type="checkbox" data-act="setting" data-k="autoSpeak" ${S.autoSpeak?"checked":""}><span>Read each instruction aloud automatically</span></label>
+    <div class="field"><label for="rate">Speaking speed: <span id="rateval">${Number(S.rate).toFixed(2)}</span></label><input id="rate" type="range" min="0.5" max="1.2" step="0.05" value="${S.rate}" data-act="setting" data-k="rate" style="min-height:48px"></div>
+    <div class="row"><button class="btn small" data-act="testvoice" data-lang="en">Test English voice</button><button class="btn small" data-act="testvoice" data-lang="zh">测试中文语音</button></div>
+    <h3 style="margin-top:16px">Your own voice</h3>
+    <p class="muted" style="font-size:.85em;margin-top:0">Record the words and sentences yourself, so clients hear a familiar, local voice. ${VOICE.urls.size} recordings on this device.</p>
+    <button class="btn" data-act="voice">🎙 Record my voice</button>
+    <p class="muted" style="font-size:.8em">Computer voices come from the device. On iPad: Settings › Accessibility › Spoken Content › Voices, to download better English and Chinese voices.</p>
+   </div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+   <h2>Items and photos</h2>
+   <p class="muted" style="font-size:.85em">Untick items to leave them out of practice, for example to keep an untreated set for probing generalisation. “Use my photo” replaces the photo on this device only (your photo is resized and stored in this browser).</p>
+   <div class="row" style="margin-bottom:12px"><button class="btn small" data-act="allitems">Tick all</button><button class="btn small ghost" data-act="noitems">Untick all</button></div>
+   <div class="itemgrid">${grid}</div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+   <h2>Add your own item</h2>
+   <p class="muted" style="font-size:.85em">For example the client’s favourite stall dish. Do not enter names or personal details.</p>
+   <form id="addform" class="grid g2" novalidate>
+    <div class="field"><label for="c_en">Name in English (required)</label><input id="c_en" type="text" maxlength="40" required></div>
+    <div class="field"><label for="c_zh">Name in Chinese</label><input id="c_zh" type="text" maxlength="20" lang="zh-Hans"></div>
+    <div class="field"><label for="c_py">Pinyin</label><input id="c_py" type="text" maxlength="40"></div>
+    <div class="field"><label for="c_clue">Clue in English (what it is like)</label><input id="c_clue" type="text" maxlength="120"></div>
+    <div class="field"><label for="c_cluezh">Clue in Chinese</label><input id="c_cluezh" type="text" maxlength="60" lang="zh-Hans"></div>
+    <div class="field"><label for="c_kind">Kind of food (e.g. a noodle dish)</label><input id="c_kind" type="text" maxlength="40"></div>
+    <div class="field"><label for="c_inside">What is in it</label><input id="c_inside" type="text" maxlength="80"></div>
+    <div class="field"><label for="c_taste">Taste (one or two words)</label><input id="c_taste" type="text" maxlength="30"></div>
+    <div class="field"><label for="c_photo">Photo (required)</label><input id="c_photo" type="file" accept="image/*" required></div>
+    <label class="check"><input id="c_drink" type="checkbox"><span>It is a drink</span></label>
+    <div><p id="c_err" role="alert" style="color:#a00;font-weight:600;margin:0 0 8px"></p><button class="btn pri" type="submit">Add item</button></div>
+   </form>
+  </div>
+  <div class="card">
+   <h2>Data on this device</h2>
+   <div class="row"><button class="btn" data-act="csv">Download sessions (CSV)</button><button class="btn" data-act="backup">Back up (JSON)</button>
+   <label class="btn" style="cursor:pointer">Restore backup<input type="file" accept=".json,application/json" class="sr" data-act="restore"></label>
+   <button class="btn ghost" data-act="wipe">Delete all data</button></div>
+   <p class="muted" style="font-size:.8em">Nothing is sent anywhere. Data is lost if the browser’s data is cleared, so back up regularly. Use one device or browser profile per client.</p>
+  </div>`;
+}
+function resizeImage(file, max=900){
+  return new Promise((res, rej) => {
+    if(!file || !/^image\//.test(file.type)) return rej(new Error("Please choose an image file."));
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const s = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement("canvas"); c.width = Math.round(img.width*s); c.height = Math.round(img.height*s);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      res(c.toDataURL("image/jpeg", 0.82));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error("That image could not be opened.")); };
+    img.src = url;
+  });
+}
+async function addCustom(form){
+  const g = id => form.querySelector("#"+id);
+  const err = g("c_err"); err.textContent = "";
+  const en = g("c_en").value.trim(), file = g("c_photo").files[0];
+  if(!en){ err.textContent = "Please type the English name."; g("c_en").focus(); return; }
+  if(!file){ err.textContent = "Please choose a photo."; g("c_photo").focus(); return; }
+  try{
+    const data = await resizeImage(file);
+    const id = "custom_" + Date.now().toString(36);
+    const zh = g("c_zh").value.trim();
+    const item = {id, custom:true, en, zh, py:g("c_py").value.trim(), onEn: en.slice(0, Math.min(3, en.length)) + "…", onZh: zh ? zh[0] : "",
+      clueEn:g("c_clue").value.trim(), clueZh:g("c_cluezh").value.trim(), kindEn:g("c_kind").value.trim(), insideEn:g("c_inside").value.trim(),
+      tasteEn:g("c_taste").value.trim().split(/\s+/).join("|"), drink:g("c_drink").checked, unitEn: g("c_drink").checked ? "a cup of" : "a plate of", mZh: g("c_drink").checked ? "杯" : "份", price:5};
+    if(!store.set("photo."+id, data)) return;
+    const cc = getCustom(); cc.push(item);
+    if(!store.set("custom", cc)){ store.del("photo."+id); return; }
+    if(Array.isArray(S.active)){ S.active.push(id); saveSettings(); }
+    toast("Added: " + en); render();
+  }catch(e){ err.textContent = e.message; }
+}
+
+/* ---------- RECORD MY VOICE ---------- */
+let VSEL = "general";
+function vRows(groups, lang){
+  return groups.map(g => !g.rows.length ? "" : `<h3 style="margin:18px 0 4px">${esc(g.h)}</h3>` + g.rows.map(r => {
+    const has = VOICE.has(lang, r.text);
+    return `<div class="vrow"><div>${r.lbl ? `<div class="lbl">${esc(r.lbl)}</div>` : ""}<div class="txt">${esc(r.text)}</div>${r.hint ? `<div class="muted" style="font-size:.8em">${esc(r.hint)}</div>` : ""}${has ? `<div class="ok">✓ ${lang==="zh" ? "已录音" : "Recorded"}</div>` : ""}</div>
+      <div class="row"><button class="btn small ${has ? "ghost" : "pri"}" data-act="rec" data-text="${esc(r.text)}" aria-pressed="false">● ${has ? (lang==="zh" ? "重录" : "Re-record") : (lang==="zh" ? "录音" : "Record")}</button>
+      ${has ? `<button class="btn small" data-act="say" data-text="${esc(r.text)}">${ICON.speaker}<span>${lang==="zh" ? "播放" : "Play"}</span></button><button class="btn small ghost" data-act="delclip" data-text="${esc(r.text)}">${lang==="zh" ? "删除" : "Delete"}</button>`
+            : `<button class="btn small ghost" data-act="ttsplay" data-text="${esc(r.text)}">${lang==="zh" ? "电脑语音" : "Computer voice"}</button>`}</div></div>`;
+  }).join("")).join("");
+}
+function countPhrases(){
+  const lang = L(), seen = new Set(); let done = 0;
+  const add = r => { const k = clipKey(lang, r.text); if(seen.has(k)) return; seen.add(k); if(VOICE.has(lang, r.text)) done++; };
+  generalPhrases().forEach(g => g.rows.forEach(add));
+  activeItems().forEach(d => phrasesFor(d).forEach(g => g.rows.forEach(add)));
+  return {done, total: seen.size};
+}
+function viewVoice(){
+  const lang = L(), items = allItems(), c = countPhrases();
+  const sel = VSEL === "general" ? null : items.find(d => d.id === VSEL);
+  if(VSEL !== "general" && !sel) VSEL = "general";
+  const groups = sel ? phrasesFor(sel) : generalPhrases();
+  const opts = `<option value="general" ${VSEL==="general"?"selected":""}>${lang==="zh" ? "通用句子（指示、点餐）" : "General phrases (instructions, ordering)"}</option>` +
+    items.map(d => `<option value="${esc(d.id)}" ${VSEL===d.id?"selected":""}>${esc(nm(d))}${VOICE.has(lang, nm(d)) ? " ✓" : ""}</option>`).join("");
+  const sup = recSupported() ? "" : `<div class="note" style="margin-bottom:12px">Recording is not available here. Open the app from its https:// web address (for example GitHub Pages) in Safari or Chrome. Opening the file directly may block the microphone.</div>`;
+  return `<h1>${lang==="zh" ? "录我自己的声音" : "Record my voice"}</h1>${sup}
+  <div class="grid g2" style="margin-bottom:16px">
+   <div class="card stack">
+    <p style="margin:0">Recording in <strong>${lang==="zh" ? "中文" : "English"}</strong>. Use the language button at the top to record the other language.</p>
+    <p style="margin:0"><span class="stat" style="font-size:1.6em">${c.done}</span> <span class="muted">of ${c.total} phrases recorded for the ticked items</span></p>
+    <fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:600;margin-bottom:6px">When a phrase is not recorded</legend>
+     <label class="check"><input type="radio" name="vm" data-act="setting" data-k="voiceMode" value="mixed" ${S.voiceMode!=="mine"?"checked":""}><span>Use the computer voice</span></label>
+     <label class="check"><input type="radio" name="vm" data-act="setting" data-k="voiceMode" value="mine" ${S.voiceMode==="mine"?"checked":""}><span>Stay silent (my voice only)</span></label></fieldset>
+   </div>
+   <div class="card stack">
+    <h2 style="margin:0">Tips</h2>
+    <ul style="margin:0;padding-left:1.2em;font-size:.9em">
+     <li>Quiet room, tablet about 20 cm away. Each recording stops by itself after 15 seconds.</li>
+     <li>Speak naturally, a little slower than usual, the way you would say it at the stall.</li>
+     <li>For the first sound, say just that part, e.g. “lak…”.</li>
+     <li>Start with the item names and first sounds. These are used most.</li>
+    </ul>
+   </div>
+  </div>
+  <div class="card">
+   <div class="field"><label for="vsel">${lang==="zh" ? "选择项目" : "Choose what to record"}</label><select id="vsel" data-act="voicesel">${opts}</select></div>
+   ${vRows(groups, lang)}
+   <div class="row" style="margin-top:16px">${sel ? `<button class="btn" data-act="vnext">${ICON.next}<span>${lang==="zh" ? "下一个项目" : "Next item"}</span></button>` : `<button class="btn" data-act="vnext">${ICON.next}<span>${lang==="zh" ? "开始录项目" : "Start on the items"}</span></button>`}</div>
+  </div>
+  <div class="card" style="margin-top:16px">
+   <h2>Share recordings</h2>
+   <p class="muted" style="font-size:.85em">Record once, then load the same voice pack on other tablets. A voice pack holds only your recordings, not any client progress.</p>
+   <div class="row"><button class="btn" data-act="voiceexport">Download voice pack</button>
+   <label class="btn" style="cursor:pointer">Load voice pack<input type="file" accept=".json,application/json" class="sr" data-act="voiceimport"></label>
+   <button class="btn ghost" data-act="voicewipe">Delete all recordings</button></div>
+  </div>`;
+}
+function blobToDataUrl(b){ return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(b); }); }
+function dataUrlToBlob(u){
+  const m = /^data:([^,]*?)(;base64)?,(.*)$/s.exec(u); if(!m) throw new Error("bad audio data");
+  const bin = m[2] ? atob(m[3]) : decodeURIComponent(m[3]); const a = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) a[i] = bin.charCodeAt(i);
+  return new Blob([a], {type: m[1] || "audio/webm"});
+}
+async function exportVoice(){
+  const all = await VOICE.all();
+  if(!all.length){ toast("No recordings yet."); return; }
+  const clips = [];
+  for(const c of all) clips.push({lang:c.lang, text:c.text, data: await blobToDataUrl(c.blob)});
+  download("hawker-talk-voice-pack-" + today() + ".json", JSON.stringify({app:"hawker-talk-voice", version:1, exported:new Date().toISOString(), clips}), "application/json");
+}
+function importVoice(file){
+  const r = new FileReader();
+  r.onload = async () => {
+    try{
+      const data = JSON.parse(r.result);
+      if(data.app !== "hawker-talk-voice" || !Array.isArray(data.clips)) throw new Error("not a Hawker Talk voice pack");
+      let n = 0;
+      for(const c of data.clips){ if(c && (c.lang==="en" || c.lang==="zh") && c.text && c.data){ await VOICE.put(c.lang, c.text, dataUrlToBlob(c.data)); n++; } }
+      toast(n + " recordings loaded."); render();
+    }catch(e){ toast("That file could not be read (" + e.message + ")."); }
+  };
+  r.readAsText(file);
+}
+
+/* ---------- CREDITS / ABOUT ---------- */
+function viewCredits(){
+  const wc = wikiCache();
+  const rows = allItems().map(d => {
+    const p = photoSrc(d);
+    if(p.own) return `<tr><td>${esc(d.en)}</td><td colspan="3">Your own photo (stored on this device only)</td></tr>`;
+    const c = p.credit;
+    if(!c) return `<tr><td>${esc(d.en)}</td><td colspan="3">${p.pending ? "Not loaded yet (needs internet)" : "No default photo: add your own in Settings"}</td></tr>`;
+    const link = c.desc ? `<a href="${esc(c.desc)}" target="_blank" rel="noopener">${esc(c.file || "File page")}</a>` : esc(c.file || c.src || "");
+    const lic = c.licenceUrl ? `<a href="${esc(c.licenceUrl)}" target="_blank" rel="noopener">${esc(c.licence)}</a>` : esc(c.licence || "");
+    return `<tr><td>${esc(d.en)}</td><td>${link}</td><td>${esc(c.author)}</td><td>${lic}</td></tr>`;
+  }).join("");
+  return `<h1>${t("credits")}</h1><div class="card"><p>Default photos are the lead photos of the English Wikipedia article for each dish, hosted by Wikimedia and used under their open licences. They are looked up when the app is online and shown cropped to fit; changes to the photos are limited to cropping. Each file link opens the photo’s page with full licence details.</p>
+  <div class="tablewrap"><table><thead><tr><th scope="col">Item</th><th scope="col">File</th><th scope="col">Author</th><th scope="col">Licence</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <div class="row" style="margin-top:12px"><button class="btn small" data-act="reloadphotos">Look up default photos again</button></div></div>`;
+}
+function viewAbout(){
+  return `<h1>${t("about")}</h1><div class="card stack">
+  <p><strong>Hawker Talk</strong> is a practice tool for adults with aphasia, for use with a speech therapist or for home practice set up by one. It is not a diagnostic or assessment tool.</p>
+  <h2>Levels</h2>
+  <ol>
+   <li><strong>Name it.</strong> Photo naming with a cueing hierarchy: semantic clue, first sound, written word, then a spoken model to repeat.</li>
+   <li><strong>Finish the sentence.</strong> Sentence completion with the dish as the target; cues: first sound, written word, model.</li>
+   <li><strong>Build a sentence.</strong> Word tiles to put in order, then say the sentence aloud.</li>
+   <li><strong>Describe it.</strong> Generate features (kind, contents, taste, when eaten). Mark each one said; using “Show” first counts as half.</li>
+   <li><strong>Order at the stall.</strong> A three-turn ordering script with cues: key words, written sentence, model.</li>
+  </ol>
+  <h2>Scoring</h2>
+  <p>Items are scored by the person tapping the buttons, usually the therapist or carer. Naming: 100% with no help, then 80, 60, 40 and 20% after each cue, 0% for “Not yet”. Other levels follow the same idea. The app suggests moving up after two sessions of 80% or more at the suggested level, and an easier level after a session below 40%. These are suggestions only; the therapist decides.</p>
+  <h2>Voice</h2>
+  <p>Prompts are read aloud in your own recorded voice where one exists (Settings › Record my voice), otherwise by the device’s computer voice. Recordings stay on the device and can be shared between tablets as a voice pack.</p>
+  <h2>Privacy</h2>
+  <p>No accounts and no names. Everything is stored in this browser’s local storage. Exports contain only dates, items and scores.</p>
+  </div>`;
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-act]"); if(!el) return;
+  const a = el.dataset.act;
+  if(el.tagName==="A" || ["home","progress","settings","credits","about"].includes(a)) { if(el.tagName==="A") e.preventDefault(); }
+  if(el.tagName==="INPUT" || (el.tagName==="LABEL")) return; /* handled by change */
+  switch(a){
+    case "home": go("home"); break;
+    case "progress": go("progress"); break;
+    case "settings": go("settings"); break;
+    case "credits": if(SESSION){ return; } go("credits"); break;
+    case "about": go("about"); break;
+    case "voice": go("voice"); break;
+    case "rec": startRec(L(), el.dataset.text, el); break;
+    case "ttsplay": { const m = S.voiceMode; S.voiceMode = "mixed"; const had = VOICE.has(L(), el.dataset.text); if(!had) speak(el.dataset.text); S.voiceMode = m; break; }
+    case "delclip": VOICE.del(L(), el.dataset.text).then(render); break;
+    case "vnext": { const ids = allItems().map(d => d.id); const i = VSEL === "general" ? -1 : ids.indexOf(VSEL); VSEL = ids[(i+1) % ids.length]; render(); const sel = document.getElementById("vsel"); if(sel) sel.focus(); break; }
+    case "voiceexport": exportVoice(); break;
+    case "voicewipe": if(!confirmTwice(el)) break; VOICE.clear().then(() => { toast("All recordings deleted."); render(); }); break;
+    case "lang":
+      if(S.lang === el.dataset.lang) break;
+      S.lang = el.dataset.lang; saveSettings();
+      if(SESSION){ toast(S.lang==="zh" ? "语言已改变，练习重新开始。" : "Language changed. The set has restarted."); startSession(SESSION.level); }
+      else render();
+      break;
+    case "start": startSession(Number(el.dataset.level)); break;
+    case "quit": if(SESSION && SESSION.results.length){ finishSession(); } else go("home"); break;
+    case "say": if(!speak(el.dataset.text) && S.voiceMode === "mine") toast(L()==="zh" ? "这句还没有录音。" : "Not recorded yet."); break;
+    case "cue": {
+      const max = SESSION.key==="name" ? 4 : 3; if(ST.cue >= max) break;
+      ST.cue++;
+      const list = cuesFor(SESSION.key); const c = list[ST.cue-1];
+      render();
+      if(SESSION.key==="order"){ if(c==="model" || c==="sent") speak(ST.script[ST.turn].say); }
+      else { const s = cueSpeech(ST.d, c); if(s) speak(s); }
+      announce(t("help") + " " + ST.cue);
+      break; }
+    case "got": {
+      const k = SESSION.key;
+      if(k==="order"){ ST.turnRes.push(scoreFromCue("order", ST.cue)); ST.turnCues = (ST.turnCues||[]).concat(CUE_LABEL.order[ST.cue]); nextTurn(); break; }
+      recordItem({result: CUE_LABEL[k][ST.cue], score: scoreFromCue(k, ST.cue), detail: k==="complete" ? clozeText(ST.d) : ""});
+      ST.revealed = true; ST.recorded = true; render(); speak(nm(ST.d)); focusTop();
+      break; }
+    case "notyet": {
+      const k = SESSION.key;
+      if(k==="order"){ ST.turnRes.push(0); ST.turnCues = (ST.turnCues||[]).concat("not yet"); ST.revealed = true; render(); speak(ST.script[ST.turn].say); break; }
+      recordItem({result:"not yet", score:0, detail: k==="complete" ? clozeText(ST.d) : ""});
+      ST.revealed = true; ST.recorded = true; render(); speak(nm(ST.d)); focusTop();
+      break; }
+    case "next": advance(); break;
+    case "turnnext": ST.revealed = false; nextTurn(true); break;
+    case "tile": {
+      const i = Number(el.dataset.i), want = ST.built.length;
+      if(i === want){ ST.built.push(i); if(ST.built.length === ST.sentence.length){ finishBuild(); } else render(); focusTile(); }
+      else { ST.errors++; ST.posErr = (ST.posErr||0)+1; el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake"); if(ST.posErr >= 2 && !ST.hinted){ ST.hinted = true; render(); focusTile(); } }
+      break; }
+    case "buildhint": ST.hinted = true; render(); focusTile(); break;
+    case "feat": { const k = el.dataset.k; ST.feats[k] = !ST.feats[k]; render(); const b = $app.querySelector(`[data-act="feat"][data-k="${k}"]`); if(b) b.focus(); break; }
+    case "showfeat": { const k = el.dataset.k; ST.shown[k] = true; const ans = k==="taste" ? plain(f(ST.d,"taste")) : f(ST.d,k); render(); speak(ans); const b = $app.querySelector(`[data-act="feat"][data-k="${k}"]`); if(b) b.focus(); break; }
+    case "descdone": {
+      const ks = ["kind","inside","taste","when"].filter(k => k==="taste" ? plain(f(ST.d,"taste")) : f(ST.d,k));
+      const pts = ks.reduce((a,k) => a + (ST.feats[k] ? (ST.shown[k] ? 0.5 : 1) : 0), 0);
+      const target = Math.min(3, ks.length) || 1;
+      const saidList = ks.filter(k => ST.feats[k]).map(k => k + (ST.shown[k] ? " (after showing)" : "")).join("; ");
+      recordItem({result: (ks.filter(k=>ST.feats[k]).length) + " features", score: Math.min(1, pts/target), detail: saidList || "none"});
+      advance(); break; }
+    case "setlevel": S.level = Number(el.dataset.level); saveSettings(); go("home"); break;
+    case "csv": exportCsv(); break;
+    case "backup": exportJson(); break;
+    case "testvoice": { const l = el.dataset.lang; const v = pickVoice(l); speak(l==="zh" ? "老板，我要一盘海南鸡饭。" : "One chicken rice, please.", l); if(!v) toast(l==="zh" ? "没有找到中文语音。" : "No English voice found."); break; }
+    case "reloadphotos": store.del("wikiphotos"); photoError = false; lastTry = 0; render(); loadWikiPhotos().then(ok => toast(ok ? "Photos updated." : "Could not reach Wikipedia. Check the internet connection.")); break;
+    case "resetphoto": store.del("photo."+el.dataset.id); render(); loadWikiPhotos(); break;
+    case "delcustom": { if(!confirmTwice(el)) break; const id = el.dataset.id; store.set("custom", getCustom().filter(c => c.id!==id)); store.del("photo."+id); render(); break; }
+    case "allitems": S.active = null; saveSettings(); render(); break;
+    case "noitems": S.active = []; saveSettings(); render(); toast("No items ticked: all items will be used until you tick some."); break;
+    case "wipe": {
+      if(!confirmTwice(el)) break;
+      try{ Object.keys(localStorage).filter(k => k.startsWith(KEY+".")).forEach(k => localStorage.removeItem(k)); }catch(e){}
+      S = Object.assign({}, DEFAULT_SETTINGS); lastTry = 0; toast("All data on this device has been deleted."); go("home"); break; }
+  }
+});
+/* Two-tap confirm, avoiding blocking browser dialogs */
+function confirmTwice(el){
+  if(el.dataset.armed === "1") return true;
+  el.dataset.armed = "1"; const old = el.innerHTML; el.innerHTML = "<span>Tap again to confirm</span>";
+  setTimeout(() => { if(el.isConnected){ el.dataset.armed = ""; el.innerHTML = old; } }, 4000);
+  return false;
+}
+function focusTile(){ const b = $app.querySelector(".tile.hint") || $app.querySelector(".tile") || $app.querySelector('[data-act="next"]'); if(b) b.focus({preventScroll:true}); }
+function finishBuild(){
+  const sc = ST.hinted ? 0.25 : ST.errors===0 ? 1 : ST.errors===1 ? 0.75 : 0.5;
+  recordItem({result: ST.hinted ? "completed with hint" : ST.errors + " errors", score: sc, detail: joinW(ST.sentence)});
+  render(); speak(joinW(ST.sentence));
+}
+function nextTurn(fromReveal){
+  if(!fromReveal){ /* got it on this turn */ }
+  ST.cue = 0; ST.revealed = false; ST.turn++;
+  if(ST.turn >= ST.script.length){
+    const sc = ST.turnRes.reduce((a,b)=>a+b,0) / ST.turnRes.length;
+    recordItem({result: ST.turnCues.join(" / "), score: sc, detail: ST.script.map(s => s.say).join(" | ")});
+    advance(); return;
+  }
+  render(); speak(ST.script[ST.turn].stall); focusTop();
+}
+document.addEventListener("change", async e => {
+  const el = e.target; const a = el.dataset.act; if(!a) return;
+  if(a==="setting"){
+    const k = el.dataset.k;
+    if(el.type==="radio" && !el.checked) return;
+    S[k] = el.type==="checkbox" ? el.checked : (k==="setLen" || k==="level" || k==="rate") ? Number(el.value) : el.value;
+    saveSettings(); if(k!=="rate") render(); return;
+  }
+  if(a==="toggleitem"){
+    const all = allItems().map(d => d.id); let act = Array.isArray(S.active) ? S.active.slice() : all.slice();
+    if(el.checked){ if(!act.includes(el.dataset.id)) act.push(el.dataset.id); } else act = act.filter(x => x!==el.dataset.id);
+    S.active = act.length === all.length ? null : act; saveSettings(); return;
+  }
+  if(a==="photo"){
+    try{ const data = await resizeImage(el.files[0]); if(store.set("photo."+el.dataset.id, data)){ toast("Photo saved on this device."); render(); } }
+    catch(err){ toast(err.message); }
+    return;
+  }
+  if(a==="restore"){ if(el.files[0]) importJson(el.files[0]); el.value = ""; }
+  if(a==="voicesel"){ VSEL = el.value; render(); const sel = document.getElementById("vsel"); if(sel) sel.focus(); }
+  if(a==="voiceimport"){ if(el.files[0]) importVoice(el.files[0]); el.value = ""; }
+});
+document.addEventListener("input", e => {
+  if(e.target.id==="rate"){ S.rate = Number(e.target.value); const v = document.getElementById("rateval"); if(v) v.textContent = S.rate.toFixed(2); saveSettings(); }
+});
+document.addEventListener("submit", e => { if(e.target.id==="addform"){ e.preventDefault(); addCustom(e.target); } });
+
+render();
+loadWikiPhotos();
+</script>
+</body>
+</html>
